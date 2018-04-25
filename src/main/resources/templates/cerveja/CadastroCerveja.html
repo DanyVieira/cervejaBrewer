@@ -117,43 +117,129 @@
 					
 					<div class="container-fluid">
 					
-					<!-- 	<div class="alert  alert-danger  alert-dismissible" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
-						</div> -->
-					
+							<!-- 	<div class="alert  alert-danger  alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
+								</div> -->
+							
 							<form method="POST" th:object="${cerveja}"class="form-vertical  js-form-loading">
 								
-								<div class="form-group">
-									<label for="input-produto-nome">Nome</label>
-									<input id="input-produto-nome" type="text" class="form-control"/>
-								</div>
-						
-								<div class="form-group">
-									<label for="input-produto-descricao">Descrição</label>
-									<textarea id="input-produto-descricao" rows="3" class="form-control"></textarea>
-								</div>
-						
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="form-group">
-											<label for="input-produto-preco">Preço unitário</label>
-											<input id="input-produto-preco" type="text" class="form-control" placeholder="R$"/>
-										</div>
-									</div>
-									
-									<div class="col-sm-3">
-										<div class="form-group">
-											<label for="input-produto-estoque">Estoque</label>
-											<input id="input-produto-estoque" type="text" class="form-control" placeholder="Unidades"/>
-										</div>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<button class="btn  btn-primary" type="submit">Salvar</button>
-									<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a>
-								</div>
+										<div class="row">
+												<div class="col-sm-2">
+													<div class="form-group">
+													
+														<label for="sku">SKU</label>
+														<input id="sku" type="text" class="form-control"/>
+														
+													</div>
+												</div>
+													
+												<div class="col-sm-10 form-group">
+													
+														<label for="nome">Nome</label>
+														<input id="nome" type="text" class="form-control" />
+												
+												   
+												  </div>  
+												
+										 </div>
+										   
+										   
+												<div class="form-group">
+													<label for="descricao">Descrição</label>
+													<textarea id="input-produto-descricao" rows="3" class="form-control"></textarea>
+												</div>
+											  	
+										 
+												
+												<div class="row">
+													<div class="col-sm-3  form-group">
+															
+																<label for="estilo">Estilo</label>
+																<select id="estilo" class="form-control" >
+																	<option value="">Selecione o estilo</option>
+																	<option value="1">Pale lager</option>
+																</select>
+														
+														</div>
+														
+														<div class="col-sm-3  form-group">
+															
+																<label for="sabor">Sabor</label>
+																<select id="sabor" class="form-control" >
+																	<option value="">Selecione o sabor</option>
+																	<option value="1">Adocicado</option>
+																</select>
+														
+														</div>
+														<div class="col-sm-3 form-group">
+															<label for="teorAlcoolico">Teor Alcoólico</label>
+															<div class="input-group">  <!--  pra colocar o percentagem no final do input -->
+																
+																<input id="teorAlcoolico" type="text" class="form-control" />
+																<div class="input-group-addon">%</div>
+														    </div>
+														</div>
+														
+														<div class="col-lg-3 col-sm-6 form-group"> <!-- lg tela grande o espaçamento sera de 3 sm- tela pequena o espaçamento sera de 6-->
+															<label for="origem">Origem</label>     <!-- nesse caso eu coloco espaçamento maior na tela pequena pq ai obriga a pular o campo pra linha debaixo -->
+															 <div>
+																<div class="radio radio-inline"> 
+																	
+																	<input type="radio" name="origem" />
+																	<label>Nacional</label>
+															    </div>
+															    <div class="radio radio-inline"> 
+																	
+																	<input type="radio" name="origem" />
+																	<label>Internacional</label>
+															    </div>
+															  </div> 
+														</div>
+												</div>
+												
+												
+												<div class="row">
+													<div class=" col-sm-3 form-group"> 
+														<label for="preco">Preço</label>
+															<div class="input-group">  <!--  pra colocar o percentagem no final do input -->
+																
+																<input id="preco" type="text" class="form-control" />
+																<div class="input-group-addon">R$</div>
+																
+													         </div>
+													  </div>
+												      <div class="col-sm-3 form-group">
+															<label for="comissao">Comissão</label>
+															<div class="input-group">  <!--  pra colocar o percentagem no final do input -->
+																
+																<input id="comissao" type="text" class="form-control" />
+																<div class="input-group-addon">%</div>
+														    </div>
+														</div>
+												        <div class="col-sm-3 form-group">
+															<label for="estoque">Estoque</label>																													
+															<input id="estoque" type="text" class="form-control" />
+																
+														    
+														</div>
+												 
+												 
+												 
+												  </div>
+												
+												
+												
+												
+												
+												
+												</div>
+												
+												
+												<div class="form-group">
+													<button class="btn  btn-primary" type="submit">Salvar</button>
+													<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a>
+												</div>
 						
 								</form>
 						</div>

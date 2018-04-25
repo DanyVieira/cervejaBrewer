@@ -40,10 +40,6 @@ public class CervejasController {
 		return "redirect:/cervejas/novo"; //redirect : se deu tudo certo quero que ele va a tela de novo cadastro ! Ou seja faz um novo get para a pagina cadastro
 		
 	}
-	@RequestMapping("/cervejas/cadastro")
-	public String cadastro (){
-		return "cerveja/cadastro-produto";
-	}
 	
 	
 }
