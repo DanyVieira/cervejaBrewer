@@ -22,7 +22,7 @@ public class CervejasController {
 	 public String novo(Cerveja cerveja){
 		
 		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
-		  return "cerveja/CadastroCerveja";
+		  return "layout/LayoutPadrao";
 	 }
 
 	@RequestMapping (value="cervejas/novo", method= RequestMethod.POST)
