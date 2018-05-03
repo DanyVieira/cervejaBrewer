@@ -34,4 +34,13 @@ public class CervejasController {
 		  return mv;
 	 }
 	
+	@RequestMapping("/usuarios/novo")
+	 @GetMapping
+	 public ModelAndView usuario(Cerveja cerveja){ 
+		ModelAndView mv = new ModelAndView("/usuario/CadastroUsuario");
+		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
+		  return mv;
+	 }
+	
+	
 }

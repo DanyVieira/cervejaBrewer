@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}">
+
+
+<head>
+	<title>Cadastro de Usuários</title>
+</head>
+
+<body>
+	<section layout:fragment="conteudo">
+	
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de Usuários
+				</h1>
+			</div>
+		</div>
+	
+		<div class="container-fluid">
+	
+			
+			<form method="POST" th:object="${usuario}" class="form-vertical  js-form-loading">
+		
+				
+					
+					
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input id="nome" type="text" class="form-control"/>
+				</div>
+				
+				
+				<div class="row">
+										
+					<div class="col-sm-8  form-group">
+						<label for="email">E-mail</label>
+						<input id="email" type="text" class="form-control"/>
+					</div>
+					
+					<div class="col-sm-4  form-group">
+						<label for="dataNasc">Data de nascimento</label>
+						<input id="dataNasc" type="text" class="form-control"/>
+					</div>
+				</div>
+				
+					
+				<div class="row">
+					<div class="col-sm-4  form-group">
+						<label for="senha">Senha</label>
+						<input id="senha" type="text" class="form-control"/>
+					</div>
+					
+					<div class="col-sm-4  form-group">
+						<label for="confSenha">Confirmação de senha</label>
+						<input id="confSenha" type="text" class="form-control"/>
+					</div>
+					
+					<div class="col-sm-4  col-sm-6  form-group"> <!-- consigo responsividade ao colocar o um tamanho maior na div ao diminuir a tela, dai ela é obrogada a ir pra linha debaixo -->
+						<label for="status">Status </label>
+						<div>
+							<div class="checkbox-inline">
+								<input type="checkbox" name="status"> 
+								<label>Ativo</label>
+							</div>
+							
+						</div>
+					</div>
+				
+				</div>
+				
+					
+				<div class="form-group">
+					
+						<label for="grupos">Grupos </label>
+						<div>
+							<div class="checkbox-inline">
+								<input type="checkbox" name="grupos"> 
+								<label>Administrador</label>
+							</div>
+							<div class="checkbox-inline  ">
+								<input type="checkbox" name="grupos"> 
+								<label>Vendedor</label>
+							</div>
+						</div>
+				</div>
+				
+				
+				
+				
+		<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+		</div>
+				
+				
+				
+		</form>
+	 </div>		
+	
+	</section>
+	
+</body>
+</html>
+
+
+
+
+
+
+					
