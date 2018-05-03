@@ -1,0 +1,26 @@
+/*
+#####################################
+UTILIDADES
+#####################################
+
+*/
+.bw-glyphicon-large{   /* aqui mudo o tamanho do botao*/
+	font-size: 18px;	
+}
+
+
+/*
+#####################################
+COMPONENTES
+#####################################
+
+*/
+
+/* Field Action*/
+.bw-field-action {
+	display: flex; /* aqui digo que o display é flexivel com relação ao conteiner*/
+	
+}
+.bw-field-action__icon{
+	margin: 6px 0 0 5px;  /*magem de 5 pra cima zero esquerda e direita e 5 para o botao de +*/
+}
