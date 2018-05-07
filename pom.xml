@@ -70,9 +70,9 @@
 			<scope>test</scope>
 		</dependency>
 		
-		  
+	
 		
-		<!-- Bean validation  -->
+	<!-- Bean validation  -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>

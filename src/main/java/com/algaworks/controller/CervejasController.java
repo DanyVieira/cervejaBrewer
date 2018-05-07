@@ -2,6 +2,8 @@ package com.algaworks.controller;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.SystemPropertyUtils;
@@ -20,12 +22,15 @@ import com.algaworks.model.Usuario;
 @RequestMapping("/")
 public class CervejasController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
+	
 	@RequestMapping("/cervejas/novo")
 	 @GetMapping
 	 public ModelAndView novo(Cerveja cerveja){ 
 		ModelAndView mv = new ModelAndView("/cerveja/CadastroCerveja");
 		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
-		  return mv;
+	//	logger.error("error"); 
+		return mv;
 	 }
 
 	@RequestMapping("/clientes/novo")

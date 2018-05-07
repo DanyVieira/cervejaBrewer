@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration status="WARN"> <!-- mostrar no console os logs -->
+	<Appenders>  <!--  pra onde vou mandar o log no caso console-->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36}: %msg%n" /> <!--  formato de como sera a saido do log : como sera a data, o nivel do log, a classe que gerou o log e a mensagem-->
+		</Console>
+	</Appenders>
+	
+	<Loggers>
+		<Logger name="com.algaworks.cervejaBrewer" level="debug"/>
+		
+		<Logger name="org.hibernate.SQL" level="debug"/>
+	
+		<Root level="error">       <!--  Nível root para todos -->
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
