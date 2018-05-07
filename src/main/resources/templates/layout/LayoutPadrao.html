@@ -29,12 +29,15 @@
 
 	
 	<section class="aw-layout-content  js-content" layout:fragment="conteudo"></section>
-	<div th:replace= "layout/fragments/Footer :: layout-footer"></div>
+	<div th:replace= "layout/fragments/Footer :: layout-footer"></div><!-- layout footer é o nome do fragemento -->
 	
 </div>
  <script th:src="@{/layout/javascripts/vendors.min.js}"></script>
  <script th:src="@{/layout/javascripts/algaworks.min.js}"></script> 
  <script th:src="@{/javascripts/vendors/jquery.maskMoney.min.js}"></script> 
-  <script th:src="@{/javascripts/brewer.js}"></script> 
+ <script th:src="@{/javascripts/brewer.js}"></script> 
+ 
+ <th:block layout:fragment="javascript-extra"></th:block><!-- todos os scripts extras vou colocar aqui, porque esses scripts necessitam dos acima, ou seja eles precisam de vir depois dos scripts acima --> 
+  
 </body>
 </html>

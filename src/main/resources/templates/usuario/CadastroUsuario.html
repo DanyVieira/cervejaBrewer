@@ -7,6 +7,8 @@
 
 <head>
 	<title>Cadastro de Usuários</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
 </head>
 
 <body>
@@ -51,22 +53,21 @@
 				<div class="row">
 					<div class="col-sm-4  form-group">
 						<label for="senha">Senha</label>
-						<input id="senha" type="text" class="form-control"/>
+						<input id="senha" type="password" class="form-control"/>
 					</div>
 					
 					<div class="col-sm-4  form-group">
 						<label for="confSenha">Confirmação de senha</label>
-						<input id="confSenha" type="text" class="form-control"/>
+						<input id="confSenha" type="password" class="form-control"/>
 					</div>
 					
 					<div class="col-sm-4  col-sm-6  form-group"> <!-- consigo responsividade ao colocar o um tamanho maior na div ao diminuir a tela, dai ela é obrogada a ir pra linha debaixo -->
 						<label for="status">Status </label>
 						<div>
-							<div class="checkbox-inline">
-								<input type="checkbox" name="status"> 
-								<label>Ativo</label>
-							</div>
-							
+						
+								<input type="checkbox" class="js-status" data-size="small" data-off-color="danger" data-on-text="Ativo" data-off-text="Inativo"> 
+								
+													
 						</div>
 					</div>
 				
@@ -101,7 +102,14 @@
 	 </div>		
 	
 	</section>
-	
+
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script> 	<!--  agora consigo incluir esse script la no final da página padrão -->
+	<script>
+		$('.js-status').bootstrapSwitch();//neste cvaso chamo a class la de cima e atribuo a função do switch
+	</script>
+</th:block>
+
 </body>
 </html>
 

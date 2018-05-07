@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.model.Cerveja;
+import com.algaworks.model.Cliente;
+import com.algaworks.model.Usuario;
 
 @Controller
 @RequestMapping("/")
@@ -28,7 +30,7 @@ public class CervejasController {
 
 	@RequestMapping("/clientes/novo")
 	 @GetMapping
-	 public ModelAndView cliente(Cerveja cerveja){ 
+	 public ModelAndView cliente(Cliente cliente){ 
 		ModelAndView mv = new ModelAndView("/cliente/CadastroCliente");
 		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
 		  return mv;
@@ -36,7 +38,7 @@ public class CervejasController {
 	
 	@RequestMapping("/usuarios/novo")
 	 @GetMapping
-	 public ModelAndView usuario(Cerveja cerveja){ 
+	 public ModelAndView usuario(Usuario usuario){ 
 		ModelAndView mv = new ModelAndView("/usuario/CadastroUsuario");
 		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
 		  return mv;
