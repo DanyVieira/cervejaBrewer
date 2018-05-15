@@ -1,5 +1,6 @@
 package com.algaworks.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -19,7 +20,9 @@ import javax.validation.constraints.Size;
 
 @Entity  
 @Table(name="cerveja")   //é uma tabela no banco
-public class Cerveja {
+public class Cerveja implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id //é o identificador
 	@GeneratedValue(strategy= GenerationType.IDENTITY) //usa auto-incremento
