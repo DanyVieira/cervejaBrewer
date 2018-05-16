@@ -26,7 +26,7 @@ import com.algaworks.repository.CervejaRepository;
 public class CervejasController {
 	
 	@Autowired //aqui vou injetar o repository com a variavel abaixo
-	private CervejaRepository cervejas;
+	private CervejaRepository cervejaRepository;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
 	
@@ -37,7 +37,7 @@ public class CervejasController {
 		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
 	//	logger.error("error"); 
 		
-		cervejas.findAll(); //vai listas todas as cervejas de repository
+		cervejaRepository.findAll(); //vai listas todas as cervejas de repository
 		return mv;
 	 }
 
