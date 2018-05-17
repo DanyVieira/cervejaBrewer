@@ -33,16 +33,6 @@ public class Estilo implements Serializable{ //posso recuperar um determinado es
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		return result;
-	}
-
-
-	
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
@@ -56,6 +46,18 @@ public class Estilo implements Serializable{ //posso recuperar um determinado es
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+
 	
 	@Override
 	public boolean equals(Object obj) { //gera equals e hashcode em cima de codigo
