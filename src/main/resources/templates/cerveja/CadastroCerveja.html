@@ -33,7 +33,7 @@
 						<label for="sku">SKU</label>
 						<input id="sku" type="text" class="form-control" th:field="*{sku}"/><!-- field referencia o atributo sku do th:object definido la em cima  -->
 																							<!-- Com o field consigo fazer o bind consigo atribuir o valor passado na view a variavel la do model!! -->		
-					</div>																	<!--  sempre colocar o th:field dentro do input -->	
+					</div>																	<!--  sempre colocar o th:field dentro do input ou no select-->	
 					
 					<div class="col-sm-10  form-group">
 						<label for="nome">Nome</label>
@@ -50,9 +50,9 @@
 					<div class="col-sm-3  form-group">
 						<label for="estilo">Estilo</label>
 							<div class="bw-field-action"><!--  classe que possui uma ação para esse campo  -->
-								<select id="estilo" class="form-control">
+								<select id="estilo" class="form-control th:" th:field="*{estilo}">
 									<option value="">Selecione o estilo</option>
-									<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}" ></option>  <!-- th:text é o que ira aparecer na combo e o th:valeu é o valor representativo do text uso ele pra ordernar a combo-->
+									<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}" ></option>  <!-- th:text é o que ira aparecer na combo e o th:valeu é o valor que sera enviado para a variavel *{estilo} la do model-->
 								</select>
 								
 								<div class="bw-field-action__icon">
