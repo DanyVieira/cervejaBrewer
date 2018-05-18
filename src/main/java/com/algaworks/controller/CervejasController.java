@@ -64,11 +64,14 @@ public class CervejasController {
 			Model model,  //para lançar a mensagem de erro 
 			RedirectAttributes attributes){ //neste caso consigo adiciionar uma mensagem em uma pagina com redirect. Pois se colocar apenas addAtribute em uma página redirect ela ira desaparecer apos o redirect
 
-		if(result.hasErrors()){ //se ocorreu um erro no preenchimemto da variavel
-						return novo(cerveja);
-		}
+			/*if(result.hasErrors()){ //se ocorreu um erro no preenchimemto da variavel
+				return novo(cerveja);
+			}*/
 		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso"); //agora consigo colocar uma mensagem em uma página redirect
-		System.out.println("cadastrar"+cerveja.getSku());//neste caso o spring ja preencheu o objeto com o valor passado automaticamente
+		System.out.println(">>>>>>>>>>> sku"+cerveja.getSku());//neste caso o spring ja preencheu o objeto com o valor passado automaticamente
+		System.out.println(">>>>>>>>>>>>>>> SABOR"+cerveja.getSabor());
+		System.out.println(">>>>>>>>>>>ORIGEM"+cerveja.getOrigem());
+		
 		return new ModelAndView("redirect:/cervejas/novo"); //redirect : se deu tudo certo quero que ele va a tela de novo cadastro ! Ou seja faz um novo get para a pagina cadastro
 		
 	}
