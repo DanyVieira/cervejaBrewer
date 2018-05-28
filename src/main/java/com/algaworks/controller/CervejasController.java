@@ -24,6 +24,7 @@ import com.algaworks.model.Sabor;
 import com.algaworks.model.Usuario;
 import com.algaworks.repository.CervejaRepository;
 import com.algaworks.repository.EstilosRepository;
+import com.algaworks.service.CadastroCervejaService;
 
 @Controller
 @RequestMapping("/")
@@ -37,7 +38,9 @@ public class CervejasController {
 	@Autowired
 	private EstilosRepository estiloRepository;
 	
-	 
+	@Autowired
+	private CadastroCervejaService cadastroCervejaService;
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
 	
@@ -63,17 +66,17 @@ public class CervejasController {
 			BindingResult result,  //resultado do binding
 			Model model,  //para lançar a mensagem de erro 
 			RedirectAttributes attributes){ //neste caso consigo adiciionar uma mensagem em uma pagina com redirect. Pois se colocar apenas addAtribute em uma página redirect ela ira desaparecer apos o redirect
-/*
+
 			if(result.hasErrors()){ //se ocorreu um erro no preenchimemto da variavel
 				return novo(cerveja);
-			}*/
-		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso"); //agora consigo colocar uma mensagem em uma página redirect
-		System.out.println(">>>>>>>>>>> sku"+cerveja.getSku());//neste caso o spring ja preencheu o objeto com o valor passado automaticamente
-		System.out.println(">>>>>>>>>>>>>>> SABOR"+cerveja.getSabor());
-		System.out.println(">>>>>>>>>>>ORIGEM"+cerveja.getOrigem());
-		System.out.println(">>>>>>>>>>>ESTILO"+cerveja.getEstilo().getNome());
+			}
 		
-		return new ModelAndView("redirect:/cervejas/novo"); //redirect : se deu tudo certo quero que ele va a tela de novo cadastro ! Ou seja faz um novo get para a pagina cadastro
+			
+			cadastroCervejaService.salvar(cerveja);
+			
+			attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso"); //agora consigo colocar uma mensagem em uma página redirect
+				
+			return new ModelAndView("redirect:/cervejas/novo"); //redirect : se deu tudo certo quero que ele va a tela de novo cadastro ! Ou seja faz um novo get para a pagina cadastro
 		
 	}
 		
