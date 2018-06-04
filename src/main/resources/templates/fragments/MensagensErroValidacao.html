@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+	
+	<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}"><!-- so renderizo essa div se houver um erro, neste caso vai na entidade cerveja -->
+				<button type="button" class="close" data-dismiss="alert" ><span aria-hidden="true">&times;</span></button>
+				<th:block th:each="detailedError : ${#fields.detailedErrors()}"> <!-- aqui percorro o bloco para encontrar os erros sera uma lista de erros vindo da entidade cerveja-->
+					<div> <i class="fa  fa-exclamation-circle"></i> [[${detailedError.message}]].</div>
+				</th:block>
+	</div>
+		
+</html>
