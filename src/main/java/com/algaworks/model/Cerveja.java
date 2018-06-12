@@ -13,10 +13,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.algaworks.validation.SKU;
 
 @Entity  
 @Table(name="cerveja")   //é uma tabela no banco
@@ -28,35 +34,45 @@ public class Cerveja implements Serializable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY) //usa auto-incremento
 	private Long codigo; //identificador da tabela
 	
-//	@NotNull //aqui estou dizendo que sku não pode ser nulo tem que ser anotação do javax.validation.constraints
+	@SKU
+	// com a exclamação so aplica a validação se houver dados
 	@NotBlank(message="SKU é obrigatório") //para não aceitar valor nulo 
 	private String sku;
 	
 	@NotBlank(message="Nome é obrigatório")
 	private String nome;
 	
+	@NotBlank(message="Descrição é obrigatório")
 	@Size(min=1, max=50, message="Descricão deve ter no maximo 50 caracteres")
 	private String descricao;
-		
+	
+	@NotNull(message="Valor é obrigatório")
+	@DecimalMin("0.01")
+	@DecimalMax(value="9999999.99", message="O valor da cerveja deve ser menor que R$9.999.999.999,99") 
 	private BigDecimal valor;
 	
+	@NotNull(message="Teor Alcoolico é obrigatório")
+	@DecimalMax(value="100.0", message="O valor do teor alcoolico deve ser menor que 100") 
 	@Column(name="teor_alcoolico") //nome da coluna no BD
 	private BigDecimal teorAlcoolico;
 	
+	@DecimalMax(value="100.0", message="O comissão deve ser igual ou menor que 100") 
 	private BigDecimal comissao;
 	
+
+	@Max(value=9999, message="A quantidade de estoque deve ser menor que 9.999")
 	@Column(name="quantidade_estoque") //nome da coluna no BD
 	private Integer quantidadeEstoque;
 	
-	
+	@NotNull(message="Origem é obrigatório")
 	@Enumerated (EnumType.STRING) //forma como ira salvar no BD, neste caso ira salvar com as palavras nacional e internacional
 	private Origem origem; //relacionamento com a tabela origem, que no caso é um enum
 	
-	
+	@NotNull(message="Sabor é obrigatório")
 	@Enumerated (EnumType.STRING)
 	private Sabor sabor; //enum sabor
 	
-	
+	@NotNull(message="Estilo é obrigatório")
 	@ManyToOne //1 estilo pra n cervejas
 	@JoinColumn(name="codigo_estilo")// como sera o relacionamento com a coluna estilo
 	private Estilo estilo; //uma classe

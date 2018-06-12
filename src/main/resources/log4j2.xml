@@ -10,7 +10,7 @@
 	<Loggers>
 		<Logger name="com.algaworks.cervejaBrewer" level="debug"/>
 		
-		<Logger name="org.hibernate" level="debug "/>
+		<Logger name="org.hibernate.SQL" level="debug "/>
 	
 		<Root level="error">       <!--  Nível root para todos -->
 			<AppenderRef ref="Console" />
