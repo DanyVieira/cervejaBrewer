@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.model.Cerveja;
 import com.algaworks.model.Cliente;
+import com.algaworks.model.Estilo;
 import com.algaworks.model.Origem;
 import com.algaworks.model.Sabor;
 import com.algaworks.model.Usuario;
@@ -32,6 +33,7 @@ import com.algaworks.service.CadastroCervejaService;
 public class CervejasController {
 	
 	
+
 	@Autowired //aqui vou injetar o repository com a variavel abaixo
 	private CervejaRepository cervejaRepository;
 	

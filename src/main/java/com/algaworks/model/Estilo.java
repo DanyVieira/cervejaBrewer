@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import javassist.SerialVersionUID;
 
@@ -20,9 +22,11 @@ public class Estilo implements Serializable{ //posso recuperar um determinado es
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	private Long codigo;
 	
-	
+	@NotNull(message="Nome é obrigatório")
+	@Size(max = 20, message = "O tamanho do nome não pode ser maior que {max} caracteres")
 	private String nome;
 
 	@OneToMany(mappedBy = "estilo") // um estilo pode ter uma lista de cerveja
