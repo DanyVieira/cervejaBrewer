@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,8 +26,9 @@ public class Estilo implements Serializable{ //posso recuperar um determinado es
 	
 	private Long codigo;
 	
-	@NotNull(message="Nome é obrigatório")
+
 	@Size(max = 20, message = "O tamanho do nome não pode ser maior que {max} caracteres")
+	@NotBlank(message="Nome é obrigatório")
 	private String nome;
 
 	@OneToMany(mappedBy = "estilo") // um estilo pode ter uma lista de cerveja

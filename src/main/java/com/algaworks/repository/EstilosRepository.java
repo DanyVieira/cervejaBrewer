@@ -15,6 +15,6 @@ import com.algaworks.model.Estilo;
 @Repository
 public interface EstilosRepository extends JpaRepository <Estilo,Long>{ //Long é o tipo da chave primaria da tabela em questão  
 	
-	
+	public Optional<Estilo> findByNomeIgnoreCase(String Nome);//encontra cerveja pelo Sku desconsiderando se letra maiuscula ou minuscula
 
 }
