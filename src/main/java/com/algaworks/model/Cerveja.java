@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
@@ -34,7 +35,7 @@ public class Cerveja implements Serializable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY) //usa auto-incremento
 	private Long codigo; //identificador da tabela
 	
-	@SKU
+	@SKU //aqui chamo a validação do SKU.java
 	// com a exclamação so aplica a validação se houver dados
 	@NotBlank(message="SKU é obrigatório") //para não aceitar valor nulo 
 	private String sku;
@@ -46,17 +47,17 @@ public class Cerveja implements Serializable {
 	@Size(min=1, max=50, message="Descricão deve ter no maximo 50 caracteres")
 	private String descricao;
 	
-	@NotNull(message="Valor é obrigatório")
+	//@NotNull(message="Valor é obrigatório")
 	@DecimalMin("0.01")
 	@DecimalMax(value="9999999.99", message="O valor da cerveja deve ser menor que R$9.999.999.999,99") 
 	private BigDecimal valor;
 	
-	@NotNull(message="Teor Alcoolico é obrigatório")
+	//@NotNull(message="Teor Alcoolico é obrigatório")
 	@DecimalMax(value="100.0", message="O valor do teor alcoolico deve ser menor que 100") 
 	@Column(name="teor_alcoolico") //nome da coluna no BD
 	private BigDecimal teorAlcoolico;
 	
-	@NotNull(message="Comissão é obrigatório")
+	//@NotNull(message="Comissão é obrigatório")
 	@DecimalMax(value="100.0", message="O comissão deve ser igual ou menor que 100") 
 	private BigDecimal comissao;
 	
@@ -78,7 +79,37 @@ public class Cerveja implements Serializable {
 	@JoinColumn(name="codigo_estilo")// como sera o relacionamento com a coluna estilo
 	private Estilo estilo; //uma classe
 	
+	@Transient
+	private String valorString;
 	
+	@Transient
+	private String teorString;
+	
+	
+	@Transient
+	private String comissaoString;
+	
+	
+	
+	
+	public String getTeorString() {
+		return teorString;
+	}
+	public void setTeorString(String teorString) {
+		this.teorString = teorString;
+	}
+	public String getComissaoString() {
+		return comissaoString;
+	}
+	public void setComissaoString(String comissaoString) {
+		this.comissaoString = comissaoString;
+	}
+	public String getValorString() {
+		return valorString;
+	}
+	public void setValorString(String valorString) {
+		this.valorString = valorString;
+	}
 	public String getSku() {
 		return sku;
 	}
