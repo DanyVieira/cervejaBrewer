@@ -136,5 +136,9 @@
 		<div th:replace="estilo/CadastroRapidoEstilo ::modal"></div>  <!--  neste caso vou substituir essa div pelo fragmento chamdado modal que se encontra na -->
 	</section>
 	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
+	</th:block>
+	
 </body>
 </html>

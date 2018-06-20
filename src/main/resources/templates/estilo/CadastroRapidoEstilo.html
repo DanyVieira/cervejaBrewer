@@ -7,7 +7,9 @@
   <div class="modal-dialog modal-sm" role="document">  <!-- modal sm significa que o modal sera pequeno -->
     <div class="modal-content">
       <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        	<span aria-hidden="true">&times;</span>
+	        </button>
 	        <h4 class="modal-title">Cadastro de Estilo</h4>
       </div>
       <div class="modal-body" > <!--  Corpo do modal -->
@@ -15,12 +17,12 @@
       			<div class="form-group" >
       				<label class="col-sm-2 control-label" for="nomeEstilo">Nome </label>
       				<div class="col-sm-10">
-      					<input id="nomeEstilo" type="text" class="form-control" autofocus="autofocus"/> <!--  o cursor ja vai pra dentro da caixa de texto com autofocus --> 
+      					<input id="nomeEstilo" type="text" class="form-control" /> <!--  o cursor ja vai pra dentro da caixa de texto com autofocus --> 
       				</div>
       			</div>
       		</form>
 
-	      	<button type="button" class="btn btn-primary">Salvar</button>
+	      	<button type="button" class="btn btn-primary  js-modal-cadastro-estilo-salvar-btn">Salvar</button>
 		    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         </div>  
       
