@@ -7,12 +7,16 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -72,6 +76,27 @@ public class EstiloController {
 				
 			return new ModelAndView("redirect:/estilos/novo"); //redirect : se deu tudo certo quero que ele va a tela de novo cadastro ! Ou seja faz um novo get para a pagina cadastro
 		
+	}
+
+	@RequestMapping (value="/estilos", method= RequestMethod.POST,    // essa aqui é a url que vou capturar que foi a mesma definida la no cadastrorapidoestilo.html
+			consumes = {MediaType.APPLICATION_JSON_VALUE} ) //tipo de dado que o servidor recebe
+			
+	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result){ //para entender o JSON pego o corpo da requisição e transformo em estilo
+			System.out.println(">>>>>>>>>>>>>estilo"+estilo.getNome());
+			
+			
+			if(result.hasErrors()){
+			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
+			}
+			
+			try{
+				cadastroEstiloService.salvar(estilo);
+				}catch (NomeEstiloJaCadastradoException e) {
+					return ResponseEntity.badRequest().body(e.getMessage());
+ 					
+				}
+			
+			return ResponseEntity.badRequest().body("errooo");
 	}
 		
 	

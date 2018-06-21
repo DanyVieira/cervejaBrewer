@@ -29,6 +29,9 @@
 			<thymeleaf-extras-springsecurity4.version>3.0.2.RELEASE</thymeleaf-extras-springsecurity4.version>
 			<thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
 			<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
+			<!-- Jackson - JSON -->
+		<jackson-core.version>2.9.6</jackson-core.version>
+			
 	</properties>
 
 	<dependencies>
@@ -99,6 +102,17 @@
             <scope>compile</scope>
         </dependency>
 	  
+		
+		<!-- JSON  -->
+		
+	<!-- Jackson - JSON -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson-core.version}</version>
+		    <scope>compile</scope>
+		</dependency>
+		
 		
 		
 	</dependencies>
