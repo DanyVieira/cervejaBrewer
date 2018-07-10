@@ -81,7 +81,7 @@ public class EstiloController {
 	@RequestMapping (value="/estilos", method= RequestMethod.POST,    // essa aqui é a url que vou capturar que foi a mesma definida la no cadastrorapidoestilo.html
 			consumes = {MediaType.APPLICATION_JSON_VALUE} ) //tipo de dado que o servidor recebe
 			
-	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result){ //para entender o JSON pego o corpo da requisição e transformo em objeto estilo
+	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result){ //para entender o JSON pego o corpo da requisição (RequestBody) e transformo em objeto estilo
 			
 			
 			if(result.hasErrors()){
@@ -89,13 +89,13 @@ public class EstiloController {
 			}
 			
 			try{
-				cadastroEstiloService.salvar(estilo);
+				estilo = cadastroEstiloService.salvar(estilo);
 				}catch (NomeEstiloJaCadastradoException e) {
-					return ResponseEntity.badRequest().body(e.getMessage());
+					return ResponseEntity.badRequest().body(e.getMessage()); //se o nome ja esta cadastrado ele retorna o erro
  					
 				}
 			
-			return ResponseEntity.badRequest().body("errooo");
+			return ResponseEntity.ok(estilo);
 	}
 		
 	

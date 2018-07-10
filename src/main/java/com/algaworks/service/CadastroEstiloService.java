@@ -16,13 +16,13 @@ public class CadastroEstiloService {
 	private EstilosRepository estilos;
 	
 	@Transactional //nesse caso abro uma transação para executar esse metodo
-	public void salvar (Estilo estilo){
+	public Estilo salvar (Estilo estilo){
 		Optional<Estilo> estiloOptional = estilos.findByNomeIgnoreCase(estilo.getNome());
 		if (estiloOptional.isPresent()){  // se o nome ja existe no BD lança a exception
 			throw new NomeEstiloJaCadastradoException("Nome do estilo já cadastrado");
 		}
 		
-		estilos.save(estilo);   //aqui salvo o que esta no repository dentro do BD
+		return estilos.saveAndFlush(estilo);   //aqui salvo o que esta no repository dentro do BD e ainda por cima retorna o codigo do estilo
 	}
 
 }
