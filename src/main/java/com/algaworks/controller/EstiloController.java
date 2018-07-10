@@ -81,8 +81,7 @@ public class EstiloController {
 	@RequestMapping (value="/estilos", method= RequestMethod.POST,    // essa aqui é a url que vou capturar que foi a mesma definida la no cadastrorapidoestilo.html
 			consumes = {MediaType.APPLICATION_JSON_VALUE} ) //tipo de dado que o servidor recebe
 			
-	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result){ //para entender o JSON pego o corpo da requisição e transformo em estilo
-			System.out.println(">>>>>>>>>>>>>estilo"+estilo.getNome());
+	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result){ //para entender o JSON pego o corpo da requisição e transformo em objeto estilo
 			
 			
 			if(result.hasErrors()){

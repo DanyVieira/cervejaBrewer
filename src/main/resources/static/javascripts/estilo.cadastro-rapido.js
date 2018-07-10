@@ -1,56 +1,51 @@
 $(function() {
 	
-	var modal = $('#modalCadastroRapidoEstilo');   //nesse caso pego o id do cadastrorapidoestilo.html
-	var botaoSalvar= modal.find('.js-modal-cadastro-estilo-salvar-btn');  //aqui chamo a classe do botao salvar
-	var form= modal.find('form');// encontro a tag formulario
-	form.on('submit',function(event){event.preventDefault()} ); //submeter o formulario impede q ao dar enter o formulario fecha, isso atraves do preventDefault
-	var url = form.attr('action');   //aqui pego a url do input do formulario
-	var inputNomeEstilo = $('#nomeEstilo'); //pega o id do input da tela
-	var containerMesagemErro = $('.js-mensagem-cadastro-rapido-estilo');
+	var modal = $('#modalCadastroRapidoEstilo');  //Capturo o id do modal
+	var botaoSalvar = modal.find('.js-modal-cadastro-estilo-salvar-btn');  //pego a classe do salvar procurando pelo modal
+	var form = modal.find('form');  //pelo a div form
+	form.on('submit', function(event) { event.preventDefault() }); //impede que ao dar enter eu submeta o formulário
+	var url = form.attr('action');  //captura a url que defini no controller que é estilos
+	var inputNomeEstilo = $('#nomeEstilo'); //captura o input de nome
+	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-estilo'); //captura a div que mostra a mensagem de erro
 	
-	modal.on('shown.bs.modal',onModalShow );  //lança a função onModalShow depois de o modal ser carregado
-	modal.on('hide.bs.modal', onModalClose);
+	modal.on('shown.bs.modal', onModalShow); //chama a função onModalshow ao abrir a tela
+	modal.on('hide.bs.modal', onModalClose) 
 	botaoSalvar.on('click', onBotaoSalvarClick);
 	
-	
 	function onModalShow() {
-		inputNomeEstilo.focus();  //ao carregar o modal dou focu no input da tela
+		inputNomeEstilo.focus(); //da foco no input ao abrir a tela
 	}
 	
-	
-	function onModalClose() {
-		
-
-		inputNomeEstilo.val(' ');
-		
+	function onModalClose() { 
+		inputNomeEstilo.val(''); //ao fechar a tela retiro o que digitei antes
+		containerMensagemErro.addClass('hidden'); //esconde a mensaagem de erro
+		form.find('.form-group').removeClass('has-error'); //remove o erro
 	}
 	
 	function onBotaoSalvarClick() {
-		var nomeEstilo= inputNomeEstilo.val().trim() ;
-		console.log('nome estilo', nomeEstilo);
-		
-		$.ajax({                                //requisição ajax pra salvar no servidor
-			url:url,                            // ja pego a url que é : CadastrorapidoEstilo que pego la na action
-			method: 'POST',                     // qual metodo que vou usar pra submeter 
-			contentType:'application/json' ,    // formato do arquivo que vou mandar ao servidor
-			data : JSON.stringify({nome : nomeEstilo}) ,              //qual dado que vou enviar ao servidor, transformo em JSON como objeto, dai la na requisição do controler ja consigo receber um objeto do tipo Estilo
-			error: onErroSalvandoEstilo
+		var nomeEstilo = inputNomeEstilo.val().trim(); //preenche a variavel com valor digitado e retira espaços em branco
+		$.ajax({  // dados que irei passar ao servidor
+			url: url,
+			method: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({ nome: nomeEstilo }),
+			error: onErroSalvandoEstilo,
 			success: onEstiloSalvo
 		});
 	}
 	
 	function onErroSalvandoEstilo(obj) {
 		var mensagemErro = obj.responseText;
-		containerMesagemErro.removeClass('hidden'); //nesse caso ele se tornara visivel pois irei retirar a classe que o esconde
-		containerMesagemErro.html('<span>'+mensagemErro+'</span>');   //aqui mostro a mensagem de erro dentro de um span
-		form.find('.form-group').addClass('has-error');   //no caso de erro a div de input fica vermelha
+		containerMensagemErro.removeClass('hidden'); //torna a div de erro visivel 
+		containerMensagemErro.html('<span>' + mensagemErro + '</span>');
+		form.find('.form-group').addClass('has-error');// torna o input vermelho pra mostrar erro
 	}
 	
-	function onEstiloSalvo() {
-		console.log(arguments);
-		
-		
+	function onEstiloSalvo(estilo) {
+		var comboEstilo = $('#estilo');
+		comboEstilo.append('<option value=' + estilo.codigo + '>' + estilo.nome + '</option>');
+		comboEstilo.val(estilo.codigo);
+		modal.modal('hide');
 	}
 	
 });
-
