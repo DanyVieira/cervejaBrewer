@@ -31,7 +31,7 @@ import com.algaworks.service.exception.NomeEstiloJaCadastradoException;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/estilos")
 
 public class EstiloController {
 	
@@ -48,7 +48,7 @@ public class EstiloController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
 	
-	@RequestMapping("/estilos/novo")
+	@RequestMapping("/novo")
 	 @GetMapping
 	 public ModelAndView novo(Estilo estilo){ 
 		ModelAndView mv = new ModelAndView("/estilo/CadastroEstilo");
@@ -56,7 +56,7 @@ public class EstiloController {
 		return mv;
 	 }
 	
-@RequestMapping(value="/estilos/novo", method= RequestMethod.POST)
+@RequestMapping(value="/novo", method= RequestMethod.POST)
 	public ModelAndView cadastrar (@Valid Estilo estilo,   //valid adiciona a validação ao campo
 			BindingResult result,  //resultado do binding da validação 
 			Model model,  //para lançar a mensagem de erro 
@@ -78,14 +78,13 @@ public class EstiloController {
 		
 	}
 
-	@RequestMapping (value="/estilos", method= RequestMethod.POST,    // essa aqui é a url que vou capturar que foi a mesma definida la no cadastrorapidoestilo.html
-			consumes = {MediaType.APPLICATION_JSON_VALUE} ) //tipo de dado que o servidor recebe
+	@RequestMapping (method= RequestMethod.POST,    // essa aqui é a url que vou capturar que foi a mesma definida la no cadastrorapidoestilo.html 
+			consumes = {MediaType.APPLICATION_JSON_VALUE} ) //tipo de dado que o servidor recebe  VIA JASONNNNNNNNN
 			
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Estilo estilo, BindingResult result){ //para entender o JSON pego o corpo da requisição (RequestBody) e transformo em objeto estilo
 			
 			
 			if(result.hasErrors()){
-			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
 			}
 			
 			try{
@@ -97,7 +96,7 @@ public class EstiloController {
 			
 			return ResponseEntity.ok(estilo);
 	}
-		
+	//neste caso aqui estou usando Responsebody pq estou trabalhando com JSON, e retorno ResponseEntity pq queroo informar o status da requisição	
 	
 
 }
