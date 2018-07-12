@@ -50,16 +50,16 @@ public class Cerveja implements Serializable {
 	//@NotNull(message="Valor é obrigatório")
 	@DecimalMin("0.01")
 	@DecimalMax(value="9999999.99", message="O valor da cerveja deve ser menor que R$9.999.999.999,99") 
-	private BigDecimal valor;
+	private Double valor;
 	
 	//@NotNull(message="Teor Alcoolico é obrigatório")
 	@DecimalMax(value="100.0", message="O valor do teor alcoolico deve ser menor que 100") 
 	@Column(name="teor_alcoolico") //nome da coluna no BD
-	private BigDecimal teorAlcoolico;
+	private Double teorAlcoolico;
 	
 	//@NotNull(message="Comissão é obrigatório")
 	@DecimalMax(value="100.0", message="O comissão deve ser igual ou menor que 100") 
-	private BigDecimal comissao;
+	private Double comissao;
 	
 	@NotNull(message="Estoque é obrigatório")
 	@Max(value=9999, message="A quantidade de estoque deve ser menor que 9.999")
@@ -134,22 +134,22 @@ public class Cerveja implements Serializable {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public BigDecimal getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(BigDecimal valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	public BigDecimal getTeorAlcoolico() {
+	public Double getTeorAlcoolico() {
 		return teorAlcoolico;
 	}
-	public void setTeorAlcoolico(BigDecimal teorAlcoolico) {
+	public void setTeorAlcoolico(Double teorAlcoolico) {
 		this.teorAlcoolico = teorAlcoolico;
 	}
-	public BigDecimal getComissao() {
+	public Double getComissao() {
 		return comissao;
 	}
-	public void setComissao(BigDecimal comissao) {
+	public void setComissao(Double comissao) {
 		this.comissao = comissao;
 	}
 	public Integer getQuantidadeEstoque() {

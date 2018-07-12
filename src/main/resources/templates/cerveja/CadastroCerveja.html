@@ -83,7 +83,7 @@
 					<div class="col-sm-3  form-group"th:classappend="${#fields.hasErrors('teorAlcoolico')}? has-error">
 						<label for="teorAlcoolico"  class="control-label">Teor alcoólico</label>
 						<div class="input-group">
-							<input id="teorAlcoolico" type="text" class="form-control js-decimal" th:field="*{teorAlcoolico}"/> <!--  esse js decimal sera chamado la no validação de campo pelo JS essa marcação js indica que se trata de um controle JS -->
+							<input id="teorAlcoolico" type="text" class="form-control" th:field="*{teorAlcoolico}"/> <!--  esse js decimal sera chamado la no validação de campo pelo JS essa marcação js indica que se trata de um controle JS -->
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
@@ -108,21 +108,21 @@
 						<label for="valor"  class="control-label">Valor</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="valor" type="text" class="form-control js-decimal" th:field="*{valor}"/>
+							<input id="valor" type="text" class="form-control " th:field="*{valor}"/>
 						</div>
 					</div>
 					
 					<div class="col-sm-3  form-group"th:classappend="${#fields.hasErrors('comissao')}? has-error">
 						<label for="comissao">Comissão</label>
 						<div class="input-group">
-							<input id="comissao" type="text" class="form-control js-decimal" th:field="*{comissao}"/>
+							<input id="comissao" type="text" class="form-control" th:field="*{comissao}"/>
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
 					
 					<div class="col-sm-3  form-group"th:classappend="${#fields.hasErrors('quantidadeEstoque')}? has-error">
 						<label for="estoque"  class="control-label">Estoque</label>
-						<input id="estoque" type="text" class="form-control js-plain"th:field="*{quantidadeEstoque}"/>
+						<input id="estoque" type="text" class="form-control "th:field="*{quantidadeEstoque}"/>
 					</div>
 				</div>
 				

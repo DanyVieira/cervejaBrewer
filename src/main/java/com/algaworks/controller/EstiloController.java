@@ -85,14 +85,10 @@ public class EstiloController {
 			
 			
 			if(result.hasErrors()){
+				return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
 			}
-			
-			try{
-				estilo = cadastroEstiloService.salvar(estilo);
-				}catch (NomeEstiloJaCadastradoException e) {
-					return ResponseEntity.badRequest().body(e.getMessage()); //se o nome ja esta cadastrado ele retorna o erro
- 					
-				}
+			estilo = cadastroEstiloService.salvar(estilo); //o service retorna um estilo
+		
 			
 			return ResponseEntity.ok(estilo);
 	}
