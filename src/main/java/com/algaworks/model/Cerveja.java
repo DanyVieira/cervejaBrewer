@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMax;
@@ -90,7 +92,11 @@ public class Cerveja implements Serializable {
 	private String comissaoString;
 	
 	
-	
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate(){  //Executa algumas tarefas antes de persistir e atualizar o dado
+		sku= sku.toUpperCase(); //antes de jogar no BD ele transforma as letras em maiusculas.
+	}
 	
 	public String getTeorString() {
 		return teorString;
