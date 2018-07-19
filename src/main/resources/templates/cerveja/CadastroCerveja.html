@@ -132,6 +132,9 @@
 				
 				<div class="row">
 					<div class="form-group col-sm-12">
+					<input type="hidden" th:field = "*{foto}">
+					<input type="hidden" th:field = "*{contentType}">
+					
 						<label class="control-label">Foto</label>
 						
 						<div id="upload-drop" class="bw-upload">
@@ -156,7 +159,7 @@
 	
 	<th:block layout:fragment="javascript-extra">
 		<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
-		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>  <!-- upload de fotos esses dois scripts -->
 		<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
 		
 		<script>
@@ -165,7 +168,19 @@
 					type:'json',
 					filelimit:1,
 					allow:'*.(jpg|jpeg|png)',
-					action:'/fotos'
+					action:'/fotos',  //aqui crio uma url e o FotosController capturam ela.
+					complete: function (resposta){ //metodo de callback, essa função é chamada qdo é feito o upload
+						$('input[name=foto]').val(resposta.nome);    //setei os inputs com os valores recebidos e associo aos fields e do field vai pro model
+						//bagunça do caraiiiiiii !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+						// o inpute tem o name do field que por sua vez passa seu valor ao model
+						//o resposta.nome pega a variavel nome que vem la do FotoDTO, a thread atribui o valor nome e content ao DTO e retorna como resultado 
+						//esses valores, no controller o mapping retorna esse resultado ...que por sua vez é passado para o input e do input vai pro field do field pro model
+						///////////eitaaaaaaaaaaaaaaa merdaaaaaaaaaaaaaa complicadaaaaaaaaaaaaaaaaaaaaaaaaaa
+						
+						$('input[name=contentType]').val(resposta.contentType);
+					
+					
+					}
 					
 			};
 			UIkit.uploadSelect($("#upload-select"), settings); //aqui ativo o upload
