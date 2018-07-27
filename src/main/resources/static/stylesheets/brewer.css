@@ -8,6 +8,9 @@ UTILIDADES
 	font-size: 18px;	
 }
 
+.bw-required > .control-label:after { /* o asterisco sera colocado depois da classe control-label*/
+	content: "*";
+}
 
 /*
 #####################################
@@ -55,3 +58,4 @@ COMPONENTES
     
     font-size: 500px;
 }
+
