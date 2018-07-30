@@ -28,7 +28,7 @@ import com.algaworks.repository.EstilosRepository;
 import com.algaworks.service.CadastroCervejaService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/cervejas")
 
 public class CervejasController {
 	
@@ -46,7 +46,7 @@ public class CervejasController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
 	
-	@RequestMapping("/cervejas/novo")
+	@RequestMapping("/novo")
 	 @GetMapping
 	 public ModelAndView novo(Cerveja cerveja){ 
 		ModelAndView mv = new ModelAndView("/cerveja/CadastroCerveja");
@@ -55,15 +55,15 @@ public class CervejasController {
 		mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos e preeencho ela com todos os estilos buscados do banco atraves do repository
 		mv.addObject("origens", Origem.values());//valeus é um array , FindAll é uma lista
 		
-		
+		/*
 		Optional<Cerveja> cervejaOptional= cervejaRepository.findBySkuIgnoreCase("A111"); //
 		System.out.println(cervejaOptional.isPresent()); //existe a cerveja pesquisada? retorna um boolean
-		
+		*/
 		
 		return mv;
 	 }
 	
-@RequestMapping(value="/cervejas/novo", method= RequestMethod.POST)
+@RequestMapping(value="/novo", method= RequestMethod.POST)
 	public ModelAndView cadastrar (@Valid Cerveja cerveja,   //valid adiciona a validação ao campo
 			BindingResult result,  //resultado do binding
 			Model model,  //para lançar a mensagem de erro 
@@ -81,7 +81,22 @@ public class CervejasController {
 			return new ModelAndView("redirect:/cervejas/novo"); //redirect : se deu tudo certo quero que ele va a tela de novo cadastro ! Ou seja faz um novo get para a pagina cadastro
 		
 	}
-		
+	
+@GetMapping   //quando ele digitar cervejas ja cai na pesquisa
+public ModelAndView pesquisar(){
+	ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
+	
+	mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
+	mv.addObject("sabores", Sabor.values());
+	mv.addObject("origens", Origem.values());
+	return mv;
+}
+
+
+
+
+
+
 
 /*	@RequestMapping("/clientes/novo")
 	 @GetMapping
