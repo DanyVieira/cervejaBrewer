@@ -67,6 +67,7 @@
 								<select id="estilo" class="form-control th:" th:field="*{estilo}">
 									<option value="">Selecione o estilo</option>
 									<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}" ></option>  <!-- th:text é o que ira aparecer na combo e o th:valeu é o valor que sera enviado para a variavel *{estilo} la do model-->
+									<!--  estilos foi a variavel que defini no controller, criei a variavel estilo aqui e a preenchi com os valores do repository -->
 								</select>
 								
 								<div class="bw-field-action__icon">
@@ -82,7 +83,7 @@
 						<select id="sabor" class="form-control" th:field="*{sabor}">
 							<option value="">Selecione o sabor</option>
 							
-							<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}" ></option> <!-- nesse caso pego a variavel sabores la do controler e percorro seus valores polo for para apresentar eles la ma view -->
+							<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}" ></option> <!-- nesse caso pego a variavel sabores la do controler e percorro seus valores pelo for para apresentar eles la na view -->
 							
 							
 						</select>

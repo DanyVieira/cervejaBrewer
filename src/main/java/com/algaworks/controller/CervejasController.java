@@ -42,7 +42,9 @@ public class CervejasController {
 	
 	@Autowired
 	private CadastroCervejaService cadastroCervejaService;
+
 	
+
 	
 	private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
 	
@@ -89,6 +91,8 @@ public ModelAndView pesquisar(){
 	mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
 	mv.addObject("sabores", Sabor.values());
 	mv.addObject("origens", Origem.values());
+	mv.addObject("cervejas",cervejaRepository.findAll());  
+	
 	return mv;
 }
 
