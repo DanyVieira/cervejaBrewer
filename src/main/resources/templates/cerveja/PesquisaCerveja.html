@@ -140,10 +140,11 @@
 								<i class="glyphicon glyphicon-remove"></i> <!-- icone -->
 							</a>
 						
-						</td>
-						
-						
-						
+						</td> 					
+					</tr>
+					<tr th:if="${#lists.empty(cervejas)}">
+						<td colspan="7">Nenhuma cerveja encontrada</td>  <!--  quando o banco estiver vazio -->
+					
 					</tr>
 				</tbody>
 			

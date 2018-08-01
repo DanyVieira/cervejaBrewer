@@ -55,5 +55,11 @@ public class FotoStorageLocal implements FotoStorage{
 		System.out.println("salvando temporariamente>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		
 	}
+
+	@Override
+	public void salvar(String foto) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
