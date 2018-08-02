@@ -109,7 +109,7 @@
 	 		<table class="table table-hover" >         <!--  hover ao passar o mouse em cima fica realçada -->
 				<thead> <!-- cabeçalho da tabela -->
 					<tr>   <!--  linha -->
-						<th class="table-cervejas-col-foto"></th>   <!-- cabeçalho -->
+						<th class="table-cervejas-col-foto"></th>   <!-- css que chamo pra cada uma das linhas e nome das colunas -->
 						<th class="table-cervejas-col-sku">SKU</th>
 						<th class="table-cervejas-col-nome">Nome</th>
 						<th class="table-cervejas-col-estilo">Estilo</th>
@@ -125,7 +125,7 @@
 					<tr th:each="cerveja:${cervejas}">  <!--  aqui vou repetir o todas a linhas e todas a cervejas que eu tiver --> 
 																<!--  a variavel cervejas defini la no controler pegando as cervejas do repository e aqui criei a variavel cerveja -->
 						<td class="text-center"><!-- conteudo da linha -->
-							<img th:src="@{/Users/daniele.ferreira/Desktop/c1.jpg}" class="img-resposive">
+							<img src="/C:/Users/daniele.ferreira/Desktop/c1.jpg" class="img-resposive">
 						</td>											
 						<td class="text-center" th:text= "${cerveja.sku}"></td>
 						<td th:text= "${cerveja.nome}"></td>

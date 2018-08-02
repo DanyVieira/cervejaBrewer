@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.algaworks.storage.FotoStorage;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 
 @Component
 public class FotoStorageLocal implements FotoStorage{
@@ -53,13 +55,19 @@ public class FotoStorageLocal implements FotoStorage{
 	@Override
 	public void salvarTemporariamente(MultipartFile[] files) {
 		System.out.println("salvando temporariamente>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		
+		//Thumbnails.of(this.local.resolveSibling(files).toString).size(40,68); //redimenciona a foto
 	}
 
 	@Override
 	public void salvar(String foto) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public byte[] recuperar(String nome) {
+		
+		return null;
 	}
 	
 }
