@@ -34,7 +34,7 @@
 	
 		<div class="container-fluid">
 		
-			<form method="POST" th:object="${cerveja}" class="form-vertical  js-form-loading">
+			<form method="POST" th:object="${cerveja}" class="form-vertical  js-form-loading">   <!--  Objeto  -->
 			
 							<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 					<th:block th:include="fragments/MensagemSucesso"></th:block><!--  a mensagem de erro sempre tem que ficar dentro de post cerveja pois usa o field com os dados da entity cerveja -->

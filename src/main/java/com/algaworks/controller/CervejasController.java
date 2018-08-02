@@ -25,6 +25,7 @@ import com.algaworks.model.Sabor;
 import com.algaworks.model.Usuario;
 import com.algaworks.repository.CervejaRepository;
 import com.algaworks.repository.EstilosRepository;
+import com.algaworks.repository.filter.CervejaFilter;
 import com.algaworks.service.CadastroCervejaService;
 
 @Controller
@@ -66,7 +67,7 @@ public class CervejasController {
 	 }
 	
 @RequestMapping(value="/novo", method= RequestMethod.POST)
-	public ModelAndView cadastrar (@Valid Cerveja cerveja,   //valid adiciona a validação ao campo
+	public ModelAndView cadastrar (@Valid Cerveja cerveja,   //valid adiciona a validação ao campo,,,, adiociono o objeto cerveja aqui ja pra usar o objeto cerveja la na view
 			BindingResult result,  //resultado do binding
 			Model model,  //para lançar a mensagem de erro 
 			RedirectAttributes attributes){ //neste caso consigo adiciionar uma mensagem em uma pagina com redirect. Pois se colocar apenas addAtribute em uma página redirect ela ira desaparecer apos o redirect
@@ -85,7 +86,7 @@ public class CervejasController {
 	}
 	
 @GetMapping   //quando ele digitar cervejas ja cai na pesquisa
-public ModelAndView pesquisar(){
+public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result){ //ja crio esse objeto aqui pra usa como objeto la na view
 	ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
 	
 	mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
@@ -93,30 +94,13 @@ public ModelAndView pesquisar(){
 	mv.addObject("origens", Origem.values());
 	mv.addObject("cervejas",cervejaRepository.findAll());  
 	
+	
 	return mv;
 }
 
-
-
-
-
-
-
-/*	@RequestMapping("/clientes/novo")
-	 @GetMapping
-	 public ModelAndView cliente(Cliente cliente){ 
-		ModelAndView mv = new ModelAndView("/cliente/CadastroCliente");
-		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
-		  return mv;
-	 }
-	
-	@RequestMapping("/usuarios/novo")
-	 @GetMapping
-	 public ModelAndView usuario(Usuario usuario){ 
-		ModelAndView mv = new ModelAndView("/usuario/CadastroUsuario");
-		// model.addAttribute("cerveja",new Cerveja()); //crio a variavel cerveja para chama-la la na view
-		  return mv;
-	 }*/
-	
-	
 }
+
+
+
+
+
