@@ -87,12 +87,12 @@ public class CervejasController {
 	
 @GetMapping   //quando ele digitar cervejas ja cai na pesquisa
 public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result){ //ja crio esse objeto aqui pra usa como objeto la na view
-	ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
-	
-	mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
-	mv.addObject("sabores", Sabor.values());
-	mv.addObject("origens", Origem.values());
-	mv.addObject("cervejas",cervejaRepository.findAll());  
+			ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
+			
+			mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
+			mv.addObject("sabores", Sabor.values());
+			mv.addObject("origens", Origem.values());
+			mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter));   // a interface CervejaRepository extend a interface Cervejas
 	
 	
 	return mv;
