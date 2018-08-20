@@ -8,15 +8,15 @@ import org.springframework.stereotype.Repository;
 
 
 import com.algaworks.model.Cerveja;
-import com.algaworks.repository.helper.cerveja.CervejasQueries;
+import com.algaworks.repository.helper.cerveja.CervejaRepositoryQueries;
 
 
 
 @Repository
-public interface CervejaRepository extends JpaRepository <Cerveja,Long> , CervejasQueries{ //Long é o tipo da chave primaria da tabela em questão  
+public interface CervejaRepository extends JpaRepository <Cerveja,Long>, CervejaRepositoryQueries { //Long é o tipo da chave primaria da tabela em questão  
 	
 	// uma interface extendendo outra interface(CervejasQueries) , pois na interface CervejaRepository tbm tera os metodos de cervejasQueries
-	public Optional<Cerveja> findBySkuIgnoreCase(String Sku);// encontra cerveja pelo Sku desconsiderando se letra maiuscula ou minuscula
+	//public Optional<Cerveja> findBySkuIgnoreCase(String Sku);// encontra cerveja pelo Sku desconsiderando se letra maiuscula ou minuscula
 	
 
 }
