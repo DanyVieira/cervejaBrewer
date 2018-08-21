@@ -123,7 +123,8 @@
 				
 				<tbody>
 					<tr th:each="cerveja:${cervejas}">  <!--  aqui vou repetir o todas a linhas e todas a cervejas que eu tiver --> 
-																<!--  a variavel cervejas defini la no controler pegando as cervejas do repository e aqui criei a variavel cerveja -->
+																<!--  a variavel cervejas defini la no controler pegando as cervejas do repository e aqui criei a variavel cerveja
+																	aqui so entra as cervejas que passaram pelo filtro da criteria-->
 						<td class="text-center"><!-- conteudo da linha -->
 							<img src="/C:/Users/daniele.ferreira/Desktop/c1.jpg" class="img-resposive">
 						</td>											
@@ -149,9 +150,32 @@
 				</tbody>
 			
 			</table>
-		</div>		
-	
-	
+		</div>	<!-- div da tabela !  -->	
+		
+		 <div class="col-sm-12 text-center">
+		 	<nav>
+		 		<ul class="pagination pagination-sm">
+		 			<li class="disabled">
+		 				<a href="#"><span>&laquo;</span></a>
+		 			</li>
+		 			<li class="active">
+		 				<a href="#">1</a>
+		 			</li>
+		 			<li>
+		 				<a href="#">2</a>
+		 			</li>
+		 			<li>
+		 				<a href="#">3</a>
+		 			</li>
+		 			<li>
+		 				<a href="#"><span>&laquo;</span></a>
+		 			</li>
+		 		</ul>
+		 	
+		 	</nav>
+		 
+		 </div>
+			
    </div>
 		
 	
