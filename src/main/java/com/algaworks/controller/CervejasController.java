@@ -4,9 +4,13 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.aspectj.internal.lang.annotation.ajcPrivileged;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.SystemPropertyUtils;
@@ -29,6 +33,7 @@ import com.algaworks.repository.filter.CervejaFilter;
 import com.algaworks.service.CadastroCervejaService;
 
 @Controller
+
 @RequestMapping("/cervejas")
 
 public class CervejasController {
@@ -86,13 +91,16 @@ public class CervejasController {
 	}
 	
 @GetMapping   //quando ele digitar cervejas ja cai na pesquisa
-public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result){ //ja crio esse objeto aqui pra usa como objeto la na view
+public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result,@PageableDefault(size=2) Pageable pageable){ //pageable faz a paginação da tela pesquisa com dois registros por pagina
+	//ja crio esse objeto aqui pra usa como objeto la na view
 			ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
 			
 			mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
 			mv.addObject("sabores", Sabor.values());
 			mv.addObject("origens", Origem.values());
-			mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter));   // a interface CervejaRepository extend a interface Cervejas
+			mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter, pageable));   // a interface CervejaRepository extend a interface Cervejas
+			//mv.addObject("cervejas",cervejaRepository.findAll(pageable));
+			System.out.println(">>>>>>>>>>>>> page"+ pageable.getPageNumber());
 	
 	
 	return mv;

@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 import com.algaworks.model.Cerveja;
@@ -20,9 +21,18 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 	@PersistenceContext
 	private EntityManager manager;  //aqui injeto o entity Manager
 	
-	public List<Cerveja> filtrar(CervejaFilter filtro) {
+	public List<Cerveja> filtrar(CervejaFilter filtro, Pageable pageable) {
 		@SuppressWarnings("deprecation")
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Cerveja.class); //crio a criteria
+		
+		int paginaAtual= pageable.getPageNumber();// a pagina sempre começa em zero
+		int totalRegistrosPorPagina = pageable.getPageSize(); // setei o tamanho p 2
+		int primeiroRegistro = paginaAtual * totalRegistrosPorPagina; // o registro começa por zero tbm
+		
+		criteria.setFirstResult(primeiroRegistro);
+		criteria.setMaxResults(totalRegistrosPorPagina);
+		
+		
 		if (filtro != null){
 			if (!StringUtils.isEmpty(filtro.getSku())){ // se informou um sku no filtro 
 				criteria.add(Restrictions.eq("sku", filtro.getSku()));  //aqui comparo se o sku do filtro é igual ao sku do modelo
@@ -63,5 +73,6 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 	private boolean isEstiloPresente(CervejaFilter filtro) {
 		return filtro.getEstilo() != null && filtro.getEstilo().getCodigo() != null;
 	}
+	
 
 }
