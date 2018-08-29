@@ -8,6 +8,7 @@ import org.aspectj.internal.lang.annotation.ajcPrivileged;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
@@ -71,7 +72,7 @@ public class CervejasController {
 		return mv;
 	 }
 	
-@RequestMapping(value="/novo", method= RequestMethod.POST)
+	@RequestMapping(value="/novo", method= RequestMethod.POST)
 	public ModelAndView cadastrar (@Valid Cerveja cerveja,   //valid adiciona a validação ao campo,,,, adiociono o objeto cerveja aqui ja pra usar o objeto cerveja la na view
 			BindingResult result,  //resultado do binding
 			Model model,  //para lançar a mensagem de erro 
@@ -90,21 +91,21 @@ public class CervejasController {
 		
 	}
 	
-@GetMapping   //quando ele digitar cervejas ja cai na pesquisa
-public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result,@PageableDefault(size=2) Pageable pageable){ //pageable faz a paginação da tela pesquisa com dois registros por pagina
-	//ja crio esse objeto aqui pra usa como objeto la na view
-			ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
-			
-			mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
-			mv.addObject("sabores", Sabor.values());
-			mv.addObject("origens", Origem.values());
-			mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter, pageable));   // a interface CervejaRepository extend a interface Cervejas
-			//mv.addObject("cervejas",cervejaRepository.findAll(pageable));
-			System.out.println(">>>>>>>>>>>>> page"+ pageable.getPageNumber());
-	
-	
-	return mv;
-}
+	@GetMapping   //quando ele digitar cervejas ja cai na pesquisa
+	public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result,@PageableDefault(size=2) Pageable pageable){ //pageable faz a paginação da tela pesquisa com dois registros por pagina
+		//ja crio esse objeto aqui pra usa como objeto la na view
+				ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
+				
+				mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos,pois irei pesquisar por estilo
+				mv.addObject("sabores", Sabor.values());
+				mv.addObject("origens", Origem.values());
+				//mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter, pageable));   // a interface CervejaRepository extend a interface CervejaRepositoryQueries
+				Page<Cerveja> pagina = cervejaRepository.filtrar(cervejaFilter, pageable); // 
+				mv.addObject("pagina",pagina);
+				
+		
+		return mv;
+		}
 
 }
 

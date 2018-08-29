@@ -122,7 +122,7 @@
 				</thead>
 				
 				<tbody>
-					<tr th:each="cerveja:${cervejas}">  <!--  aqui vou repetir o todas a linhas e todas a cervejas que eu tiver --> 
+					<tr th:each="cerveja:${pagina.content}">  <!--  aqui vou repetir o todas a linhas e todas a cervejas que eu tiver --> 
 																<!--  a variavel cervejas defini la no controler pegando as cervejas do repository e aqui criei a variavel cerveja
 																	aqui so entra as cervejas que passaram pelo filtro da criteria-->
 						<td class="text-center"><!-- conteudo da linha -->
@@ -143,7 +143,7 @@
 						
 						</td> 					
 					</tr>
-					<!-- <tr th:if="${#lists.empty(cervejas)}">
+					<!-- <tr th:if="${#lists.empty(pagina.content)}">
 						<td colspan="7">Nenhuma cerveja encontrada</td>   quando o banco estiver vazio
 					
 					</tr> -->
@@ -156,17 +156,15 @@
 		 	<nav>
 		 		<ul class="pagination pagination-sm">
 		 			<li class="disabled">
-		 				<a href="#"><span>&laquo;</span></a>
+		 				<a href="#"><span>&laquo;</span></a> <!-- botao expandir -->
 		 			</li>
-		 			<li>
-		 				<a href="?page=0">1</a>
-		 			</li>
-		 			<li>
-		 				<a href="?page=1">2</a>
-		 			</li>
-		 			<li>
-		 				<a href="?page=2">3</a>
-		 			</li>
+		 			
+		 			<th:block th:each="p : ${#numbers.sequence(1,pagina.totalPages)" th:if="${not #lists.empty(pagina.content)}"> <!-- aqui crio a sequencia de paginas começando de 1 ate o total de paginas -->
+		 			
+			 			<li>
+			 				<a th:href="|?page=${p-1}|">[[${p}]]</a> 
+			 			</li>
+		 			</th:block>
 		 			<li>
 		 				<a href="#"><span>&laquo;</span></a>
 		 			</li>
