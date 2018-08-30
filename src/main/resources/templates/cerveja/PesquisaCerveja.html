@@ -152,20 +152,20 @@
 			</table>
 		</div>	<!-- div da tabela !  -->	
 		
-		 <div class="col-sm-12 text-center">
+		 <div class="col-sm-12 text-center"  th:if="${not #lists.isEmpty(pagina.content)}">
 		 	<nav>
 		 		<ul class="pagination pagination-sm">
 		 			<li class="disabled">
 		 				<a href="#"><span>&laquo;</span></a> <!-- botao expandir -->
 		 			</li>
 		 			
-		 			<th:block th:each="p : ${#numbers.sequence(1,pagina.totalPages)" th:if="${not #lists.empty(pagina.content)}"> <!-- aqui crio a sequencia de paginas começando de 1 ate o total de paginas -->
+		 			<th:block th:each="p : ${#numbers.sequence(1,pagina.totalPages)}"  th:with="numeroPagina=${p-1}, paginaAtual = ${pagina.number}"> <!-- aqui crio a sequencia de paginas começando de 1 ate o total de paginas -->
 		 			
-			 			<li>
-			 				<a th:href="|?page=${p-1}|">[[${p}]]</a> 
+			 			<li th:class="${paginaAtual == numeroPagina} ? active"><!-- se a pagina atual for igual ao numero da pagina ele adiciona a classe active -->
+			 				<a th:href="|?page=${numeroPagina}|">[[${p}]]</a> 
 			 			</li>
 		 			</th:block>
-		 			<li>
+		 			<li class="disabled">
 		 				<a href="#"><span>&laquo;</span></a>
 		 			</li>
 		 		</ul>
