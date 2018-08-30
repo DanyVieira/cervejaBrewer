@@ -154,19 +154,19 @@
 		
 		 <div class="col-sm-12 text-center"  th:if="${not #lists.isEmpty(pagina.content)}">
 		 	<nav>
-		 		<ul class="pagination pagination-sm">
-		 			<li class="disabled">
-		 				<a href="#"><span>&laquo;</span></a> <!-- botao expandir -->
+		 		<ul class="pagination pagination-sm" th:with="paginaAtual = ${pagina.number}" >
+		 			<li th:class="${pagina.first}? disabled"> <!-- se for a 1ª pagina o botao anterior ficara desabilitado  -->
+		 				<a th:href="|?page=${paginaAtual-1}|" th:remove="${pagina.first}? tag"><span>&laquo;</span></a> <!-- botao expandir, se for a 1ª pagina fica desabilitado o link #-->
 		 			</li>
 		 			
-		 			<th:block th:each="p : ${#numbers.sequence(1,pagina.totalPages)}"  th:with="numeroPagina=${p-1}, paginaAtual = ${pagina.number}"> <!-- aqui crio a sequencia de paginas começando de 1 ate o total de paginas -->
+		 			<th:block th:each="p : ${#numbers.sequence(1,pagina.totalPages)}"  th:with="numeroPagina=${p-1}"> <!-- aqui crio a sequencia de paginas começando de 1 ate o total de paginas -->
 		 			
 			 			<li th:class="${paginaAtual == numeroPagina} ? active"><!-- se a pagina atual for igual ao numero da pagina ele adiciona a classe active -->
 			 				<a th:href="|?page=${numeroPagina}|">[[${p}]]</a> 
 			 			</li>
 		 			</th:block>
-		 			<li class="disabled">
-		 				<a href="#"><span>&laquo;</span></a>
+		 			<li th:class="${pagina.last} ? disabled"><!-- se for a ultima pagina o botao proximo fica desabilitado -->
+		 				<a th:href="|?page=${paginaAtual+1}|"  th:remove="${pagina.last}? tag"><span>&laquo;</span></a> <!-- retiro a tag # se for a ultima pagina -->
 		 			</li>
 		 		</ul>
 		 	
