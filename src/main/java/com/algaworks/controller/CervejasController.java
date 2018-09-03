@@ -2,6 +2,7 @@ package com.algaworks.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.aspectj.internal.lang.annotation.ajcPrivileged;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import com.algaworks.controller.page.PageWrapper;
 import com.algaworks.model.Cerveja;
 import com.algaworks.model.Cliente;
 import com.algaworks.model.Estilo;
@@ -92,7 +95,7 @@ public class CervejasController {
 	}
 	
 	@GetMapping   //quando ele digitar cervejas ja cai na pesquisa
-	public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result,@PageableDefault(size=2) Pageable pageable){ //pageable faz a paginação da tela pesquisa com dois registros por pagina
+	public ModelAndView pesquisar( CervejaFilter cervejaFilter, BindingResult result,@PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest){ //pageable faz a paginação da tela pesquisa com dois registros por pagina
 		//ja crio esse objeto aqui pra usa como objeto la na view
 				ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
 				
@@ -100,8 +103,8 @@ public class CervejasController {
 				mv.addObject("sabores", Sabor.values());
 				mv.addObject("origens", Origem.values());
 				//mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter, pageable));   // a interface CervejaRepository extend a interface CervejaRepositoryQueries
-				Page<Cerveja> pagina = cervejaRepository.filtrar(cervejaFilter, pageable); // 
-				mv.addObject("pagina",pagina);
+				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); // 
+				mv.addObject("pagina",paginaWrapper);
 				
 		
 		return mv;
