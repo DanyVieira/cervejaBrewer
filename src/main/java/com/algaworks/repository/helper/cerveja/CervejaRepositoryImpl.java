@@ -9,12 +9,14 @@ import javax.transaction.Transactional;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.StringUtils;
 
 import com.algaworks.model.Cerveja;
@@ -41,6 +43,14 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 	//////////////////////////////////////////////////////////////////////////////	
 		
 		adicionarFiltro(filtro, criteria);
+		
+		Sort sort = pageable.getSort();
+		if (sort != null){
+			Sort.Order order = sort.iterator().next(); //com iterator posso ter  vários sorts
+			String property = order.getProperty(); //passo o campo de ordenação aqui 
+			criteria.addOrder(order.isAscending()? Order.asc(property): Order.desc(property)); // aqui ocorre a escolha se a ordenação é crescente ou decrescente
+																							  //uso o order do hibernate no final 
+		}
 		
 		
 		return new PageImpl<>(criteria.list(), pageable, total(filtro)); // pageable tamanho da pagina (2) total sera a quantidade de páginas necessárias p a quant de registros
