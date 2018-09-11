@@ -43,9 +43,10 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 	//////////////////////////////////////////////////////////////////////////////	
 		
 		adicionarFiltro(filtro, criteria);
-		
 		Sort sort = pageable.getSort();
-		if (sort != null){
+		//Sort sort = pageable.getSort();
+		System.out.println("sort:::::"+sort);
+		if (sort != null && sort.isSorted()){  //deve haver elementos para ordenação  o que é garantido com o não nulo e se é sorteado!!!
 			Sort.Order order = sort.iterator().next(); //com iterator posso ter  vários sorts
 			String property = order.getProperty(); //passo o campo de ordenação aqui 
 			criteria.addOrder(order.isAscending()? Order.asc(property): Order.desc(property)); // aqui ocorre a escolha se a ordenação é crescente ou decrescente

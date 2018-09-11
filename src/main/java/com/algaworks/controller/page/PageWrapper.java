@@ -47,4 +47,10 @@ public class PageWrapper<T> {
 	public String urlPagina (int pagina){
 		return uriBuilder.replaceQueryParam("page", pagina).toUriString(); //substituo parametro page da requisição pelo numero da pagina que estou passando
 	}
+	
+	public String urlOrdenada(String propriedade){
+		UriComponentsBuilder uriBuilderOrder = UriComponentsBuilder
+				.fromUriString(uriBuilder.build(true).encode().toUriString()); //aqui redefino a url
+		return uriBuilder.replaceQueryParam("sort", propriedade).build(true).encode().toUriString();//aqui gero a nova uri de ordenação com a propriedade
+	}
 }
