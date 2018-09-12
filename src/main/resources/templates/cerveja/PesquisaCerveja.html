@@ -110,12 +110,23 @@
 				<thead> <!-- cabeçalho da tabela -->
 					<tr>   <!--  linha -->
 						<th class="table-cervejas-col-foto"></th>   <!-- css que chamo pra cada uma das linhas e nome das colunas -->
-						<!-- <th class="table-cervejas-col-sku">
-					    <a th:href = ""> SKU   link para o icone de ordenação no wrapper passarei esse método, tem como retorno uma url de ordenação
-							<span class="dropup"> <span class="caret"> </span></span> botão de ordenação de campos
+						<th class="table-cervejas-col-sku">
+					   <a th:href = "${pagina.urlOrdenada('sku')}"> SKU   <!-- link para o icone de ordenação no wrapper passarei esse método, tem como retorno uma url de ordenação -->
+							<span class="dropup" th:remove = "${pagina.descendente('sku')}?tag"
+									th:if="${pagina.ordenada('sku')}"> <!-- vou remover a tag dropup (pra cima) e deixo a caret (p baixo) quando estiver em ordem descendente -->
+								<span class="caret"> </span>
+							</span> <!-- botão de ordenação de campos -->
 						</a>
-						</th> -->
-						<th class="table-cervejas-col-nome">Nome</th>
+						</th>
+						<th class="table-cervejas-col-nome">
+					    <a th:href = "${pagina.urlOrdenada('nome')}"> Nome   <!-- link para o icone de ordenação no wrapper passarei esse método, tem como retorno uma url de ordenação -->
+							<span class="dropup" th:remove = "${pagina.descendente('nome')}?tag"
+									th:if="${pagina.ordenada('nome')}"> <!-- vou remover a tag dropup (pra cima) e deixo a caret (p baixo) quando estiver em ordem descendente -->
+								<span class="caret"> </span>
+							</span> <!-- botão de ordenação de campos -->
+						</a>
+						</th>
+						
 						<th class="table-cervejas-col-estilo">Estilo</th>
 						<th class="table-cervejas-col-origem">Origem</th>
 						<th class="table-cervejas-col-valor">Valor</th>

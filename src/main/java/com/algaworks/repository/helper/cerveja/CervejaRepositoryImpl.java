@@ -40,12 +40,11 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 		
 		criteria.setFirstResult(primeiroRegistro);
 		criteria.setMaxResults(totalRegistrosPorPagina);
-	//////////////////////////////////////////////////////////////////////////////	
+	///////////////////////////Filtrando os campos ///////////////////////////////////////////////////	
 		
 		adicionarFiltro(filtro, criteria);
 		Sort sort = pageable.getSort();
-		//Sort sort = pageable.getSort();
-		System.out.println("sort:::::"+sort);
+		
 		if (sort != null && sort.isSorted()){  //deve haver elementos para ordenação  o que é garantido com o não nulo e se é sorteado!!!
 			Sort.Order order = sort.iterator().next(); //com iterator posso ter  vários sorts
 			String property = order.getProperty(); //passo o campo de ordenação aqui 
