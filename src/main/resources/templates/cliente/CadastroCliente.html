@@ -26,11 +26,13 @@
 			<form method="POST" th:object="${cliente}" class="form-vertical  js-form-loading">
 		
 				
+					<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+					<th:block th:include="fragments/MensagemSucesso"></th:block><!--  a mensagem de erro sempre tem que ficar dentro de post cerveja pois usa o field com os dados da entity cerveja -->
+				
 					
-					
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('nome')}">
 					<label for="nome">Nome</label>
-					<input id="nome" type="text" class="form-control"/>
+					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 				</div>
 				
 				

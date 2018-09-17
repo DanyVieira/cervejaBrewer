@@ -26,11 +26,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.algaworks.controller.page.PageWrapper;
 import com.algaworks.model.Cerveja;
-import com.algaworks.model.Cliente;
-import com.algaworks.model.Estilo;
 import com.algaworks.model.Origem;
 import com.algaworks.model.Sabor;
-import com.algaworks.model.Usuario;
 import com.algaworks.repository.CervejaRepository;
 import com.algaworks.repository.EstilosRepository;
 import com.algaworks.repository.filter.CervejaFilter;

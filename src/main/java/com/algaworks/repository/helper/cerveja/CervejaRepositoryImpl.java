@@ -40,7 +40,8 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 		
 		criteria.setFirstResult(primeiroRegistro);
 		criteria.setMaxResults(totalRegistrosPorPagina);
-	///////////////////////////Filtrando os campos ///////////////////////////////////////////////////	
+	
+		///////////////////////////Filtrando os campos ///////////////////////////////////////////////////	
 		
 		adicionarFiltro(filtro, criteria);
 		Sort sort = pageable.getSort();
