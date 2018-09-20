@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.model.Cliente;
+import com.algaworks.model.TipoPessoa;
 import com.algaworks.service.CadastroClienteService;
 
 
@@ -25,6 +26,7 @@ public class ClientesController {
 	@RequestMapping("/novo")
 	public ModelAndView novo(Cliente cliente){
 		ModelAndView mv = new ModelAndView("cliente/CadastroCliente");
+		mv.addObject("tipoPessoa", TipoPessoa.values());
 		return mv;
 	}
 	
