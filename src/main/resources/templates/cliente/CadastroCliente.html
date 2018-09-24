@@ -101,7 +101,7 @@
 						<label for="estado">Estado</label>
 						<select id="estado" class="form-control" >
 							<option value="">Selecione o Estado</option>
-							<option th:each="estado :${estado}" th:value="${estado.codigo}" th:text="${estado.nome}">São Paulo</option>
+							<option th:each="estado :${estado}" th:value="${estado.codigo}" th:text="${estado.nome}"></option>
 						</select>
 					</div>
 					
@@ -109,7 +109,7 @@
 						<label for="cidade">Cidade</label>
 						<select id="cidade" class="form-control">
 							<option value="">Selecione a Cidade</option>
-							<option value="1">Brasília</option>
+							<option th:each="cidade :${cidade}" th:value="${cidade.codigo}" th:text="${cidade.nome}"></option>
 						</select>
 					</div>
 					
