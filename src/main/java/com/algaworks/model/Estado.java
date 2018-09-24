@@ -1,85 +1,53 @@
 package com.algaworks.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
-@Entity
-@Table(name = "cliente")
-public class Cliente implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
+@Entity  
+@Table(name="estado")
+public class Estado implements Serializable{ //posso recuperar um determinado estado dessa entidade
+	
+	private static final long SerialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+		private Long codigo;
+	
 
-	@NotBlank(message = "Nome é obrigatório")
+	@Size(max = 20, message = "O tamanho do nome não pode ser maior que {max} caracteres")
+	@NotBlank(message="Nome é obrigatório")
 	private String nome;
 
 	
-	private String telefone;
-
-	@Email(message = "E-mail inválido")
-	private String email;
-	
-	
-	@Embedded
-	private Endereco endereco;
-
-	
-
-	public Long getCodigo() {
+	public Long getCodigo() { // vou colocar equal e hashcode em cima de codigo 
 		return codigo;
 	}
+
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
+
 	public String getNome() {
 		return nome;
 	}
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	
-	
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
 
 	@Override
 	public int hashCode() {
@@ -89,6 +57,7 @@ public class Cliente implements Serializable {
 		return result;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,7 +66,7 @@ public class Cliente implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Estado other = (Estado) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -105,5 +74,10 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
+	
+	
+	
+	
 }

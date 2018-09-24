@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.model.Cliente;
 import com.algaworks.model.TipoPessoa;
+import com.algaworks.repository.EstadoRepository;
 import com.algaworks.service.CadastroClienteService;
 
 
@@ -21,12 +22,16 @@ import com.algaworks.service.CadastroClienteService;
 public class ClientesController {
 	@Autowired
 	private CadastroClienteService cadastroClienteService;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
 
 
 	@RequestMapping("/novo")
 	public ModelAndView novo(Cliente cliente){
 		ModelAndView mv = new ModelAndView("cliente/CadastroCliente");
 		mv.addObject("tipoPessoa", TipoPessoa.values());
+		mv.addObject("estado", estadoRepository.findAll());
 		return mv;
 	}
 	
