@@ -4,8 +4,8 @@ Brewer.MascaraCpfCnpj = (function() {
 	
 	function MascaraCpfCnpj() {
 		this.radioTipoPessoa = $('.js-radio-tipo-pessoa');
-		this.labelCpfCnpj = $('[for=cpf]');
-		this.inputCpfCnpj = $('#cpf');
+		this.labelCpfCnpj = $('[for=cpfOuCnpj]');
+		this.inputCpfCnpj = $('#cpfOuCnpj');
 		
 	}
 	MascaraCpfCnpj.prototype.iniciar = function() {

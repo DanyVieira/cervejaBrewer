@@ -2,8 +2,11 @@ package com.algaworks.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +28,17 @@ public class Cliente implements Serializable {
 	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
 
+	@Column(name = "cpf_cnpj")
+	private String cpfOuCnpj;
 	
 	private String telefone;
 
 	@Email(message = "E-mail inválido")
 	private String email;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_pessoa")
+	private TipoPessoa tipoPessoa;
 	
 	
 	@Embedded
@@ -53,6 +62,15 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
+
+	
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
+	}
+
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
+	}
 
 	public String getTelefone() {
 		return telefone;
@@ -79,6 +97,16 @@ public class Cliente implements Serializable {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	
+
+	public TipoPessoa getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
 	}
 
 	@Override
