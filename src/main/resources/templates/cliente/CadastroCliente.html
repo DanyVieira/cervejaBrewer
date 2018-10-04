@@ -54,7 +54,7 @@
 					</div>	
 					
 					<div class="col-sm-8  form-group">
-						<label for="cpfOuCnpj">CPF/CNPJ</label>
+						<label for="cpfOuCnpj">CPF/CNPJ</label>  <!-- a classe js : cliente.mascara-cpf-cnpj chama esse  -->
 						<input id="cpfOuCnpj" type="text" class="form-control" th:field = "*{cpfOuCnpj}" />
 					</div>
 					
@@ -106,20 +106,25 @@
 						</select>
 					</div>
 					
-					<div class="col-sm-4  form-group">
+				<div class="col-sm-4  form-group">
 						<label for="cidade">Cidade</label>
-						<select id="cidade" class="form-control" th:field ="*{endereco.cidade}">
-							<option value="">Selecione a Cidade</option>
+						
+					<div class="bw-field-action"> <!-- classe css brewer   -->
+						<select id="cidade" class="form-control" th:field ="*{endereco.cidade}" data:url ="@{/cidades}" > <!-- aqui é a url que sera chamada ao fazer o select e passo essa url p json -->
+						
 							<option th:each="cidade :${cidade}" th:value="${cidade.codigo}" th:text="${cidade.nome}"></option>
 						</select>
+						<div class="bw-field-action__icon js-img-loading" style="display:none"> <!-- chamo esse classe no js cidade estado -->
+						 	<img th:src="@{/layout/images/loading.gif}">
+						</div>
 					</div>
-					
 				</div>
-				
-				
-		<div class="form-group">
+					
+			</div>
+								
+
 					<button class="btn  btn-primary" type="submit">Salvar</button>
-		</div>
+
 				
 				
 				
@@ -129,6 +134,7 @@
 	</section>
 	<th:block layout:fragment="javascript-extra">
 		<script th:src="@{/javascripts/cliente.mascara-cpf-cnpj.js}"></script>
+		<script th:src="@{/javascripts/cliente-combo-estado-cidade.js}"></script>
 		
 	</th:block>
 

@@ -50,9 +50,9 @@ public class Cidade implements Serializable{ //posso recuperar um determinado es
 	}
 
 	@NotNull(message="Estilo é obrigatório")
-	@ManyToOne (fetch=FetchType.LAZY)//1 estilo pra n cervejas
+	@ManyToOne (fetch=FetchType.LAZY)//1 estilo pra n cervejas , lazy não vai mais inicializar o estado na consulta do hibernate     
 	@JoinColumn(name="codigo_estado")// como sera o relacionamento com a coluna estilo
-	@JsonIgnore
+	@JsonIgnore // neste caso ao carregar os dados de cidade não carrego os dados de estado!!
 	private Estado estado; //uma classe
 
 	public void setNome(String nome) {
