@@ -100,7 +100,8 @@ public class CervejasController {
 				mv.addObject("sabores", Sabor.values());
 				mv.addObject("origens", Origem.values());
 				//mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter, pageable));   // a interface CervejaRepository extend a interface CervejaRepositoryQueries
-				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); // 
+				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); // pageWrappper contem as funções que trabalham com a paginação
+				//com o httpservlet implementado no pagewrapper mantenho o filtro na requisição
 				mv.addObject("pagina",paginaWrapper);
 				
 		
