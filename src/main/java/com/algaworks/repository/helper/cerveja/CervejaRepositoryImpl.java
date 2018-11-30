@@ -44,7 +44,7 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 		///////////////////////////Filtrando os campos ///////////////////////////////////////////////////	
 		
 		adicionarFiltro(filtro, criteria);
-		Sort sort = pageable.getSort();
+		Sort sort = pageable.getSort();  // aqui ocorre a ordenação 
 		
 		if (sort != null && sort.isSorted()){  //deve haver elementos para ordenação  o que é garantido com o não nulo e se é sorteado!!!
 			Sort.Order order = sort.iterator().next(); //com iterator posso ter  vários sorts
