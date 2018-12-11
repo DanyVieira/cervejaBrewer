@@ -52,7 +52,7 @@ public class PageWrapper<T> {
 	
 	public String urlOrdenada(String propriedade){
 		UriComponentsBuilder uriBuilderOrder = UriComponentsBuilder
-				.fromUriString(uriBuilder.build(true).encode().toUriString()); //aqui redefino a url para que a paginação tenha a ordenação propagada
+				.fromUriString(uriBuilder.build(true).encode().toUriString()); //aqui redefino a url para que a paginação não tenha a ordenação propagada
 		
 		String valorSort = String.format("%s,%s",propriedade,inverterDirecao(propriedade)); //aqui concateno o valor da propriedade com a inversão do sort
 		return uriBuilder.replaceQueryParam("sort",  valorSort).build(true).encode().toUriString();//aqui gero a nova uri de ordenação com a propriedade

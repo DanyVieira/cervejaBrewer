@@ -111,7 +111,9 @@
 					<tr>   <!--  linha -->
 						<th class="table-cervejas-col-foto"></th>   <!-- css que chamo pra cada uma das linhas e nome das colunas -->
 						<th class="table-cervejas-col-sku">
-					  		<th:block th:replace="fragments/Ordenacao::order (${pagina},'sku','SKU')"></th:block>
+					  		<th:block th:replace="fragments/Ordenacao::order (${pagina},'sku','SKU')"></th:block> <!-- la na pagewrapper tem esse metodo de ordenação --> <!-- passo p o metodo o texto e a propriedade -->
+					  		<!-- na pagina html ordenacao tem o codigo para dizer quando aparece a drop crescente ou decrescente
+					  		order é o nome do fragmento -->
 						</th>
 						<th class="table-cervejas-col-nome">
 					   		<th:block th:replace="fragments/Ordenacao::order (${pagina},'nome','NOME')"></th:block>
@@ -157,6 +159,8 @@
 			</table>
 		</div>	<!-- div da tabela !  -->	
 		
+		<!-- a classe PageWrapper que fica no pacote controller-> page contem todas as funções que trabalha com a paginação q utilizo aqui embaixon ex: atual , primeira, vazia etc...  -->
+		
 		 <div class="col-sm-12 text-center"  th:if="${not pagina.vazia}">
 		 	<nav>
 		 		<ul class="pagination pagination-sm" th:with="paginaAtual = ${pagina.atual}" >
@@ -165,10 +169,12 @@
 		 				<!--  aqui crio um link que sera a pagina atual menos um ou seja o botao previuws aponta pra página anterior -->
 		 			</li>
 		 			
-		 			<th:block th:each="p : ${#numbers.sequence(1,pagina.total)}"  th:with="numeroPagina=${p-1}"> <!-- aqui crio a sequencia de paginas começando de 1 ate o total de paginas -->
+		 			<th:block th:each="p : ${#numbers.sequence(1,pagina.total)}"  th:with="numeroPagina=${p-1}"> <!-- aqui crio a sequencia de paginas começando de 1 ate o total de paginas, o 
+		 			p recebe essa sequencia de paginas 
+		 			numero da pagina é o p menos 1 -->
 		 			
-			 			<li th:class="${paginaAtual == numeroPagina} ? active"><!-- se a pagina atual for igual ao numero da pagina ele adiciona a classe active -->
-			 				<a th:href="${pagina.urlPagina(numeroPagina)}|">[[${p}]]</a> 
+			 			<li th:class="${paginaAtual == numeroPagina} ? active"><!-- se a pagina atual for igual ao numero da pagina ele adiciona a classe active, botao da pagina fica selecionado -->
+			 				<a th:href="${pagina.urlPagina(numeroPagina)}|">[[${p}]]</a>   <!-- aqui coloco o p com a sequencia de paginas -->
 			 			</li>
 		 			</th:block>
 		 			<li th:class="${pagina.ultima} ? disabled"><!-- se for a ultima pagina o botao proximo fica desabilitado -->

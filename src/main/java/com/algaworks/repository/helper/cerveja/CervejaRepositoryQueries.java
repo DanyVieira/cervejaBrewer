@@ -10,7 +10,8 @@ import com.algaworks.repository.filter.CervejaFilter;
 
 public interface CervejaRepositoryQueries {  // essa interface é implementada pela classe CervejaRepositoryImpl
 	
-	public Page<Cerveja> filtrar (CervejaFilter filtro, Pageable pageable);
+	public Page<Cerveja> filtrar (CervejaFilter filtro, Pageable pageable);  //ao filtrar retorno uma página de cerveja
 	
 
 }
+ 

@@ -73,7 +73,7 @@ public class CervejasController {
 	 }
 	
 	@RequestMapping(value="/novo", method= RequestMethod.POST)
-	public ModelAndView cadastrar (@Valid Cerveja cerveja,   //valid adiciona a validação ao campo,,,, adiociono o objeto cerveja aqui ja pra usar o objeto cerveja la na view
+	public ModelAndView cadastrar (@Valid Cerveja cerveja,    //valid adiciona a validação ao campo,,,, adiociono o objeto cerveja aqui ja pra usar o objeto cerveja la na view
 			BindingResult result,  //resultado do binding
 			Model model,  //para lançar a mensagem de erro 
 			RedirectAttributes attributes){ //neste caso consigo adiciionar uma mensagem em uma pagina com redirect. Pois se colocar apenas addAtribute em uma página redirect ela ira desaparecer apos o redirect
@@ -100,8 +100,9 @@ public class CervejasController {
 				mv.addObject("sabores", Sabor.values());
 				mv.addObject("origens", Origem.values());
 				//mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter, pageable));   // a interface CervejaRepository extend a interface CervejaRepositoryQueries
-				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); // 
+				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); // retorno uma página de cerveja com todos os dados de paginação
 				mv.addObject("pagina",paginaWrapper);
+				// a pagewrapper contem todos os metodos de paginação
 				
 		
 		return mv;

@@ -38,7 +38,7 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 		int totalRegistrosPorPagina = pageable.getPageSize(); // setei o tamanho p 2
 		int primeiroRegistro = paginaAtual * totalRegistrosPorPagina; // o registro começa por zero tbm
 		
-		criteria.setFirstResult(primeiroRegistro);
+		criteria.setFirstResult(primeiroRegistro); //metodos do criteria que fazem a paginação
 		criteria.setMaxResults(totalRegistrosPorPagina);
 	
 		///////////////////////////Filtrando os campos ///////////////////////////////////////////////////	
@@ -54,12 +54,13 @@ public class CervejaRepositoryImpl implements CervejaRepositoryQueries { // esse
 		}
 		
 		
-		return new PageImpl<>(criteria.list(), pageable, total(filtro)); // pageable tamanho da pagina (2) total sera a quantidade de páginas necessárias p a quant de registros
+		return new PageImpl<>(criteria.list(), pageable, total(filtro)); // pageable tamanho da pagina (2) total sera a quantidade de páginas necessárias p a quant de registros 
+		//criteria.list = dados filtrados  total(filtro) = total de itens filtrados aqui embaixo esta implementado
 	}
 	
-	private Long total(CervejaFilter filtro) {
+	private Long total(CervejaFilter filtro) { //quantidade de registro que peguei com o filtro
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Cerveja.class);
-		adicionarFiltro(filtro, criteria); //agora coloco a quantidade de paginas conforme os filtros que aplico na pesquisa
+		adicionarFiltro(filtro, criteria); //agora coloco a quantidade de paginas conforme os filtros que aplico na pesquisa!!!!! AGORA SO CONTO O TOTAL DE REGISTROS QUE PASSOU PELO FILTRO
 		criteria.setProjection(Projections.rowCount());//retorna a quantidade de linhas da tabela!!!
 		return (Long)criteria.uniqueResult();
 	}
