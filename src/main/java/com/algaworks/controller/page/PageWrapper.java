@@ -15,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class PageWrapper<T> {
 	
 	private Page<T> page;
-	private UriComponentsBuilder uriBuilder;
+	private UriComponentsBuilder uriBuilder; // monta as uris para não perder o filtro!!!
 
 	public PageWrapper(Page<T> page , HttpServletRequest httpServletRequest) {// construtor que força passar uma página no controller
 		this.page = page;
