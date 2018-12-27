@@ -78,6 +78,7 @@ public class EstiloController {
 		
 	}
 
+//aqui é a parte que cadastra estilo na tela de cadastro rápido
 	@RequestMapping (method= RequestMethod.POST,    // essa aqui é a url que vou capturar que foi a mesma definida la no cadastrorapidoestilo.html 
 			consumes = {MediaType.APPLICATION_JSON_VALUE} ) //tipo de dado que o servidor recebe  VIA JASONNNNNNNNN
 			

@@ -37,7 +37,7 @@
 			<form method="POST" th:object="${cerveja}" class="form-vertical  js-form-loading">   <!--  Objeto  -->
 			
 							<th:block th:include="fragments/MensagensErroValidacao"></th:block>
-					<th:block th:include="fragments/MensagemSucesso"></th:block><!--  a mensagem de erro sempre tem que ficar dentro de post cerveja pois usa o field com os dados da entity cerveja -->
+							<th:block th:include="fragments/MensagemSucesso"></th:block><!--  a mensagem de erro sempre tem que ficar dentro de post cerveja pois usa o field com os dados da entity cerveja -->
 				
 				<div class="row">
 					<div class="col-sm-2  form-group  bw-required"  th:classappend="${#fields.hasErrors('sku')}? has-error">  <!-- has- erro - essa classe é chamada se houver algum erro em field=sku dai fica vermelho o campo-->
@@ -63,19 +63,20 @@
 				<div class="row">
 					<div class="col-sm-3  form-group bw-required"th:classappend="${#fields.hasErrors('estilo')}? has-error">
 						<label for="estilo"  class="control-label">Estilo</label>
-							<div class="bw-field-action"><!--  classe que possui uma ação para esse campo  -->
+							<div class="bw-field-action"><!--  classe css brewer.css que possui uma ação para esse campo  -->
 								<select id="estilo" class="form-control th:" th:field="*{estilo}">
 									<option value="">Selecione o estilo</option>
 									<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}" ></option>  <!-- th:text é o que ira aparecer na combo e o th:valeu é o valor que sera enviado para a variavel *{estilo} la do model-->
 									<!--  estilos foi a variavel que defini no controller, criei a variavel estilo aqui e a preenchi com os valores do repository -->
 								</select>
 								
-								<div class="bw-field-action__icon">
+								<div class="bw-field-action__icon">  <!-- icone da ação q quero implementar -->
 									 <a href="#" data-toggle="modal" data-target="#modalCadastroRapidoEstilo">
 									 	<i class="glyphicon  glyphicon-plus-sign bw-glyphicon-large"></i>	
 									 </a>							
 								</div> 
 						    </div>
+						    <!-- la embaixo chamo o fragmento com a tela de cadastro rapido que esta em templates-> estilo-> cadastrorapidoestilo -->
 					</div>
 					
 					<div class="col-sm-3  form-group bw-required"th:classappend="${#fields.hasErrors('sabor')}? has-error">

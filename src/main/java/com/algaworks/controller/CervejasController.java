@@ -60,9 +60,9 @@ public class CervejasController {
 	 public ModelAndView novo(Cerveja cerveja){ 
 		ModelAndView mv = new ModelAndView("/cerveja/CadastroCerveja");
 		
-		mv.addObject("sabores", Sabor.values()); //crio a variavel sabor que tera esse mesmo nome la na view e coloco dentro dessa variavel o array de sabores
+		mv.addObject("sabores", Sabor.values()); //crio a variavel sabor(QUE É UM ENUM) que tera esse mesmo nome la na view e coloco dentro dessa variavel o array de sabores
 		mv.addObject("estilos", estiloRepository.findAll()); //crio a variavel estilos e preeencho ela com todos os estilos buscados do banco atraves do repository
-		mv.addObject("origens", Origem.values());//valeus é um array , FindAll é uma lista
+		mv.addObject("origens", Origem.values());//valeus é um array , FindAll é uma lista 
 		
 		/*
 		Optional<Cerveja> cervejaOptional= cervejaRepository.findBySkuIgnoreCase("A111"); //
@@ -100,8 +100,7 @@ public class CervejasController {
 				mv.addObject("sabores", Sabor.values());
 				mv.addObject("origens", Origem.values());
 				//mv.addObject("cervejas",cervejaRepository.filtrar(cervejaFilter, pageable));   // a interface CervejaRepository extend a interface CervejaRepositoryQueries
-				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); // retorno uma página de cerveja com todos os dados de paginação
-				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); // pageWrappper contem as funções que trabalham com a paginação
+				PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>( cervejaRepository.filtrar(cervejaFilter, pageable),httpServletRequest); //// retorno uma página de cerveja com todos os dados de paginação  pageWrappper contem as funções que trabalham com a paginação
 				//com o httpservlet implementado no pagewrapper mantenho o filtro na requisição
 				mv.addObject("pagina",paginaWrapper);
 				

@@ -1,4 +1,4 @@
-var Brewer = Brewer || {};
+ var Brewer = Brewer || {};
 
 Brewer.EstiloCadastroRapido=(function() {
 	function EstiloCadastroRapido(){
@@ -16,7 +16,7 @@ Brewer.EstiloCadastroRapido=(function() {
 		this.form.on('submit', function(event) { event.preventDefault() }); //impede que ao dar enter eu submeta o formulário
 		this.modal.on('shown.bs.modal', onModalShow.bind(this)); //chama a função onModalshow ao abrir a tela, coloco o bind this pq a variável foi definida la em cima em outro contexto
 		this.modal.on('hide.bs.modal', onModalClose.bind(this)); 
-		this.botaoSalvar.on('click', onBotaoSalvarClick.bind(this));
+		this.botaoSalvar.on('click', onBotaoSalvarClick.bind(this));// ao acionar o evento de click chamo essa função
 		
 	}
 	
@@ -34,8 +34,8 @@ Brewer.EstiloCadastroRapido=(function() {
 	function onBotaoSalvarClick() {
 		var nomeEstilo = this.inputNomeEstilo.val().trim(); //preenche a variavel com valor digitado e retira espaços em branco
 		$.ajax({  // dados que irei passar os dados ao servidor. Preciso passar esses dados:
-			url: this.url, //   /estilos
-			method: 'POST',
+			url: this.url, //   @{/estilos}
+			method: 'POST', // la no controller.estilo tenho um requastmapping com a url estilo com o metodo post. La ja tem o metodo pra salvar no banco 
 			contentType: 'application/json',
 			data: JSON.stringify({ nome: nomeEstilo }), //dado que vou enviar em json.Com Json já posso passar o objeto estilo
 			error: onErroSalvandoEstilo.bind(this),
@@ -44,14 +44,14 @@ Brewer.EstiloCadastroRapido=(function() {
 	}
 	
 	function onErroSalvandoEstilo(obj) {
-		var mensagemErro = obj.responseText; // pega o response text que o navegador passa
-		this.containerMensagemErro.removeClass('hidden'); //torna a div de erro visivel 
+		var mensagemErro = obj.responseText; // pega o response text que o navegador passa, que é a mensagem de erro do haserros
+		this.containerMensagemErro.removeClass('hidden'); //torna a div de erro visivel, pois a classe inicialmente esta setada para hidden
 		this.containerMensagemErro.html('<span>' + mensagemErro + '</span>'); //mostra a mensagem de erro na tela
 		this.form.find('.form-group').addClass('has-error');// torna o input vermelho pra mostrar erro
 	}
 	
 	function onEstiloSalvo(estilo) {
-		var comboEstilo = $('#estilo');
+		var comboEstilo = $('#estilo'); //esse combo estilo esta la na classe cadastroCerveja.html
 		comboEstilo.append('<option value=' + estilo.codigo + '>' + estilo.nome + '</option>'); //adiciona o novo estilo na tela
 		comboEstilo.val(estilo.codigo);  // deixa o input preenchido com o novo valor inserido
 		this.modal.modal('hide'); //esconde a tela apos salvar com sucesso atraves da função modal.(hide) 
